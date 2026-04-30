@@ -16,6 +16,8 @@
     --win: #5cb85c;
     --loss: #d9534f;
     --info: #4a9eff;
+    --lore-color: #a855f7;
+    --lore-glow: rgba(168, 85, 247, 0.3);
     --sidebar-width: 240px;
     --radius: 12px;
     --radius-sm: 8px;
@@ -560,6 +562,7 @@ body {
 .match-info { flex: 1; }
 .match-champ-name { font-size: 14px; font-weight: 600; }
 .match-mode { font-size: 11px; color: var(--text-muted); }
+.match-time { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
 
 .match-kda {
     text-align: center;
@@ -1796,6 +1799,104 @@ body {
 /* Card Large */
 .card-lg {
     grid-column: 1 / -1;
+}
+
+/* ==================== Chat Mode Tabs ==================== */
+.chat-mode-tabs {
+    display: flex;
+    gap: 4px;
+    background: var(--bg-input);
+    border-radius: var(--radius-sm);
+    padding: 3px;
+    border: 1px solid var(--border);
+}
+
+.chat-mode-tab {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border: none;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    font-family: inherit;
+    color: var(--text-muted);
+    background: transparent;
+    white-space: nowrap;
+}
+
+.chat-mode-tab:hover {
+    color: var(--text-primary);
+    background: rgba(255,255,255,0.05);
+}
+
+.chat-mode-tab.active {
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.chat-mode-tab.active[data-mode="ai"] {
+    background: linear-gradient(135deg, #3a7bd5, #4a9eff);
+}
+
+.chat-mode-tab.active[data-mode="hero"] {
+    background: linear-gradient(135deg, var(--accent-dark), var(--accent));
+    color: #0a0e1a;
+}
+
+.chat-mode-tab.active[data-mode="lore"] {
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+}
+
+/* ==================== Chat Hint ==================== */
+.chat-hint {
+    font-size: 11px;
+    color: var(--text-muted);
+    opacity: 0.6;
+}
+
+/* ==================== Sidebar Nav Groups ==================== */
+.nav-group-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 16px 24px 6px;
+    user-select: none;
+}
+
+.nav-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 8px 16px;
+}
+
+/* ==================== Chat Typing Indicator ==================== */
+.chat-typing {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 14px;
+}
+
+.chat-typing-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--text-muted);
+    animation: typingBounce 1.4s infinite;
+}
+
+.chat-typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.chat-typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typingBounce {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+    30% { transform: translateY(-6px); opacity: 1; }
 }
 
 @media (max-width: 900px) {

@@ -20,6 +20,7 @@
         </div>
 
         <ul class="nav-menu">
+            <div class="nav-group-label">数据查询</div>
             <li class="nav-item active" data-tab="self-info">
                 <i class="fas fa-user-circle"></i>
                 <span>个人信息</span>
@@ -32,13 +33,17 @@
                 <i class="fas fa-crown"></i>
                 <span>英雄图鉴</span>
             </li>
+            <div class="nav-divider"></div>
+            <div class="nav-group-label">智能助手</div>
+            <li class="nav-item" data-tab="smart-chat">
+                <i class="fas fa-comments"></i>
+                <span>智能问答</span>
+            </li>
+            <div class="nav-divider"></div>
+            <div class="nav-group-label">系统</div>
             <li class="nav-item" data-tab="settings">
                 <i class="fas fa-cog"></i>
                 <span>设置</span>
-            </li>
-            <li class="nav-item" data-tab="ai-chat">
-                <i class="fas fa-robot"></i>
-                <span>智能问答</span>
             </li>
         </ul>
 
@@ -105,10 +110,23 @@
                                     <option value="euw1">EU 西欧</option>
                                 </select>
                             </div>
+                            <div class="input-group" style="flex:1">
+                                <label>区域</label>
+                                <select id="selfRegion" class="input-field">
+                                    <option value="asia">Asia 亚洲</option>
+                                    <option value="kr">KR 韩国</option>
+                                </select>
+                            </div>
                         </div>
-                        <button class="btn btn-primary" id="btnSelfSearch">
-                            <i class="fas fa-search"></i> 查询
-                        </button>
+                        <div style="display:flex;gap:8px;">
+                            <button class="btn btn-primary" id="btnSelfSearch">
+                                <i class="fas fa-search"></i> 查询
+                            </button>
+                            <button class="btn btn-outline" id="btnRefreshSelf" style="display:none;">
+                                <i class="fas fa-sync-alt"></i> 刷新数据
+                            </button>
+                        </div>
+                        <div id="selfFetchTime" style="margin-top:8px;font-size:12px;color:var(--text-muted);display:none;"></div>
                     </div>
                 </div>
             </div>
@@ -144,10 +162,23 @@
                                 <option value="euw1">EU 西欧</option>
                             </select>
                         </div>
+                        <div class="input-group" style="flex:1">
+                            <label>区域</label>
+                            <select id="searchRegion" class="input-field">
+                                <option value="asia">Asia 亚洲</option>
+                                <option value="kr">KR 韩国</option>
+                            </select>
+                        </div>
                     </div>
-                    <button class="btn btn-primary btn-lg" id="btnSearchPlayer">
-                        <i class="fas fa-search"></i> 查询玩家
-                    </button>
+                    <div style="display:flex;gap:8px;">
+                        <button class="btn btn-primary btn-lg" id="btnSearchPlayer">
+                            <i class="fas fa-search"></i> 查询玩家
+                        </button>
+                        <button class="btn btn-outline btn-lg" id="btnRefreshPlayer" style="display:none;">
+                            <i class="fas fa-sync-alt"></i> 刷新数据
+                        </button>
+                    </div>
+                    <div id="searchFetchTime" style="margin-top:8px;font-size:12px;color:var(--text-muted);display:none;"></div>
                 </div>
             </div>
 
@@ -235,6 +266,34 @@
 
                 <div class="card">
                     <div class="card-header">
+                        <h3><i class="fas fa-brain"></i> 讯飞星火AI配置</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="hint-text" style="margin-bottom:12px">
+                            配置讯飞星火大模型的API凭证，用于智能问答功能。<br>
+                            请到 <a href="https://xinghuo.xfyun.cn/" target="_blank" style="color:var(--accent)">讯飞星火开放平台</a> 获取配置信息。
+                        </p>
+                        <div class="input-group">
+                            <label>APPID</label>
+                            <input type="text" id="xinghuoAppId" class="input-field" placeholder="b3105b92">
+                        </div>
+                        <div class="input-group">
+                            <label>APIKey</label>
+                            <input type="text" id="aiApiKey" class="input-field" placeholder="09ed8f5ee8ab99d26e36841fc8872606">
+                        </div>
+                        <div class="input-group">
+                            <label>APISecret</label>
+                            <input type="text" id="xinghuoApiSecret" class="input-field" placeholder="ZTAzMjMzMmYxNTRhZjA3NGYxYWU1ZTg3">
+                        </div>
+                        <button class="btn btn-primary" id="btnSaveApiConfig">
+                            <i class="fas fa-save"></i> 保存配置
+                        </button>
+                        <span id="apiConfigStatus" class="hint-text"></span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
                         <h3><i class="fas fa-plug"></i> LCU连接</h3>
                     </div>
                     <div class="card-body">
@@ -267,12 +326,23 @@
             </div>
         </section>
 
-        <!-- ========== 智能问答 ========== -->
-        <section id="ai-chat" class="tab-content">
+        <!-- ========== 智能问答（三合一） ========== -->
+        <section id="smart-chat" class="tab-content">
             <div class="section-grid">
                 <div class="card card-lg">
                     <div class="card-header">
-                        <h3><i class="fas fa-robot"></i> LOL 智能助手</h3>
+                        <h3><i class="fas fa-comments"></i> 智能问答</h3>
+                        <div class="chat-mode-tabs">
+                            <button class="chat-mode-tab active" data-mode="ai" data-color="var(--info)">
+                                <i class="fas fa-robot"></i> AI问答
+                            </button>
+                            <button class="chat-mode-tab" data-mode="hero" data-color="var(--accent)">
+                                <i class="fas fa-crown"></i> 英雄问答
+                            </button>
+                            <button class="chat-mode-tab" data-mode="lore" data-color="var(--lore-color)">
+                                <i class="fas fa-book-open"></i> 故事问答
+                            </button>
+                        </div>
                         <div class="chat-actions">
                             <button class="btn btn-sm" id="btnClearChat" title="清空对话">
                                 <i class="fas fa-trash-alt"></i> 清空
@@ -280,34 +350,25 @@
                         </div>
                     </div>
                     <div class="card-body" style="display:flex;flex-direction:column;height:75vh;">
-                        <!-- 对话历史 -->
                         <div id="chatHistory" class="chat-history">
-                            <div class="chat-welcome">
-                                <i class="fas fa-robot fa-2x" style="color:var(--accent);margin-bottom:12px"></i>
-                                <h3>LOL 智能助手</h3>
-                                <p class="hint-text">基于韩服排位数据，为您提供专业的英雄联盟指导</p>
-                                <div class="chat-suggestions">
-                                    <button class="suggestion-btn" data-query="当前版本哪些英雄最强？推荐上分英雄">当前版本T1英雄推荐</button>
-                                    <button class="suggestion-btn" data-query="上单什么英雄好上分？分析一下当前上单格局">上单上分攻略</button>
-                                    <button class="suggestion-btn" data-query="亚索怎么出装？符文怎么带？有什么对线技巧？">亚索攻略详解</button>
-                                    <button class="suggestion-btn" data-query="中单法师和刺客哪个版本更强势？分析一下">中单版本分析</button>
-                                    <button class="suggestion-btn" data-query="辅助怎么上分？硬辅和软辅哪个好？">辅助上分指南</button>
-                                    <button class="suggestion-btn" data-query="打野节奏怎么把控？什么时候该gank？">打野节奏教学</button>
+                            <div class="chat-welcome" id="chatWelcome">
+                                <i class="fas fa-robot fa-2x chat-welcome-icon" style="color:var(--info);margin-bottom:12px"></i>
+                                <h3 id="chatWelcomeTitle">AI 问答助手</h3>
+                                <p class="hint-text" id="chatWelcomeDesc">问什么答什么，检测到英雄/装备/故事等关键词时自动调用知识库</p>
+                                <div class="chat-suggestions" id="chatSuggestions">
                                 </div>
                             </div>
                         </div>
-                        <!-- 输入区域 -->
                         <div class="chat-input-area">
-                            <div id="chatChampContext" class="chat-champ-context" style="display:none">
-                                <i class="fas fa-link"></i> 当前关注: <span id="chatChampName"></span>
-                            </div>
                             <div class="chat-input-group">
-                                <input type="text" id="chatInput" class="input-field" placeholder="输入关于英雄联盟的问题，如：亚索怎么出装？上单怎么上分？">
+                                <input type="text" id="chatInput" class="input-field" placeholder="随便问，检测到英雄/装备/故事关键词会自动调用知识库">
                                 <button class="btn btn-primary" id="btnSendChat">
                                     <i class="fas fa-paper-plane"></i> 发送
                                 </button>
                             </div>
-                            <div class="chat-status" id="chatStatus"></div>
+                            <div class="chat-status" id="chatStatus">
+                                <span class="chat-hint">按 Enter 发送</span>
+                            </div>
                         </div>
                     </div>
                 </div>

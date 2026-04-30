@@ -1,0 +1,25 @@
+{
+  "session_id": "81799478d43d",
+  "mode": "ai",
+  "round_count": 2,
+  "last_champ_id": "",
+  "last_champ_name": "",
+  "summary": "",
+  "recent_messages": [
+    {
+      "round": 1,
+      "user": "帮我查一下faker的战绩",
+      "assistant": "API密钥无效或已过期",
+      "champ_id": "",
+      "champ_name": ""
+    },
+    {
+      "round": 2,
+      "user": "为什么查不",
+      "assistant": "关于查询玩家战绩失败的可能原因：\n\n1️⃣ **API权限问题**  \n当前接口需特定权限密钥，普通用户无法直接获取（如非官方合作工具）。\n\n2️⃣ **数据平台限制**  \n官方战绩查询仅开放给合作方（如LOL客户端/Lolesports），第三方工具常因数据协议变动失效。\n\n3️⃣ **格式错误**  \n正确格式应为 **「玩家名#服务器标签」**（例：Faker#KR），若输入不完整会导致识",
+      "champ_id": "",
+      "champ_name": ""
+    }
+  ],
+  "updated_at": 1777962833.2798343
+}

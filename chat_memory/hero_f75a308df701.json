@@ -1,0 +1,25 @@
+{
+  "session_id": "f75a308df701",
+  "mode": "hero",
+  "round_count": 2,
+  "last_champ_id": "Yasuo",
+  "last_champ_name": "疾风剑豪",
+  "summary": "",
+  "recent_messages": [
+    {
+      "round": 1,
+      "user": "当前版本T1上单英雄推荐",
+      "assistant": "⚔️ 这里是英雄问答\n💡 请输入英雄名称查询玩法攻略，如\"亚索怎么玩\"、\"盲僧出装\"、\"阿狸符文\"",
+      "champ_id": "",
+      "champ_name": ""
+    },
+    {
+      "round": 2,
+      "user": "亚索怎么出装",
+      "assistant": "⚔️ **亚索(疾风剑豪)** 玩法攻略\n\n📍定位：⚔️战士 🗡️刺客\n\n📈 **强度评级**：🟡 T3 (Tier 3)\n  ⚠️胜率：49.3% | 选率：9.9% | Ban率：13.9%\n  ⚠️KDA：1.57 | 主位置：MID\n  🗺️位置：中单, 上单\n\n✨ **符文配置**\n  🔹主系：**精密** — 致命节奏, 吸收生命力, 传说：欢欣, 坚毅不倒\n  🔸副系：**坚决** ",
+      "champ_id": "Yasuo",
+      "champ_name": "疾风剑豪"
+    }
+  ],
+  "updated_at": 1778245665.4999251
+}

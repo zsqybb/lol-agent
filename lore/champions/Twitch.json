@@ -1,0 +1,16 @@
+{
+  "id": "Twitch",
+  "name": "瘟疫之源",
+  "faction": "zaun",
+  "faction_cn": "祖安",
+  "sections": {
+    "Background": "## Background\n\n### Early Life\n\n### Contemporary history\n\n### Recent events",
+    "Contemporary history": "### Contemporary history",
+    "Appearance": "## Appearance\n\nTwitch is a disheveled anthropomorphic rat with faded, moss-green fur, a hunched posture, and a prehensile tail. His jagged claws and buck teeth are a dirty, washed-out yellow. He has pink eyes as well as pink skin visible on his nose and the inside of his ears.\n\nHis attire is ragged and torn, most notably a green overcoat with the sleeves ripped off. It has a faded gold trim, twin tails, and a wide, flared collar. He has numerous straps and pouches carrying flasks of green poison and other miscellanea. He also wears a cracked pair of goggles. There are rusted metal plates armoring his right arm where he carries his crossbow. The makeshift mechanical crossbow is fastened with a chamber that loads his bolts with green chemicals."
+  },
+  "total_chars": 850,
+  "source": "fandom_wiki",
+  "title": "图奇",
+  "cn_description": "生为瘟疫鼠、身为污秽鉴赏家的图奇是一只偏执且已经变异的老鼠。他直立行走并且探查着祖安的残渣，以获取那些只有他才知道真正价值的宝藏。用一把以化学为动力的十字弓作为武器的图奇丝毫不怕弄脏他的爪子，并在他的污秽王国建起一座废料王座，同时也在无止境地密谋着人类的衰败。",
+  "cn_og_title": "图奇 - 英雄传记 - 《英雄联盟》宇宙"
+}

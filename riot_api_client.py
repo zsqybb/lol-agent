@@ -6,11 +6,12 @@ API端点: asia(账号/比赛), kr/sg2(召唤师/熟练度)
 import requests
 import time
 import logging
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 logger = logging.getLogger(__name__)
 
 # API_KEY 存储为可变变量，支持动态更新
-_API_KEY = "RGAPI-d29baf42-9a15-450e-9d1b-1935a08b0b0f"
+_API_KEY = "RGAPI-49120fd3-c7a0-4556-b196-b674b7b699ae"
 
 def get_api_key():
     """获取当前API密钥"""
@@ -181,9 +182,24 @@ def get_all_champion_masteries(puuid, platform=None):
 def get_match_ids(puuid, count=20, regional=None):
     """
     Match-V5: 获取最近比赛ID列表
-    端点: asia.api.riotgames.com
+    端点: asia.api.riotgames.com 或其他区域端点
+    
+    参数:
+        puuid: 玩家唯一ID
+        count: 获取数量
+        regional: 区域 ('asia', 'americas', 'europe')
     """
     regional = regional or DEFAULT_REGIONAL
+    
+    # Match-V5 API只能使用区域端点，不能使用平台端点
+    # 如果指定了kr，仍然使用asia端点（韩国属于asia区域）
+    if regional == "kr":
+        regional = "asia"
+    
+    # 确保使用有效的区域端点
+    if regional not in REGIONAL:
+        regional = "asia"
+    
     base = REGIONAL[regional]
     url = f"{base}/lol/match/v5/matches/by-puuid/{puuid}/ids"
     result = _get(url, params={"count": count})
@@ -198,6 +214,13 @@ def get_match_detail(match_id, regional=None):
     端点: asia.api.riotgames.com
     """
     regional = regional or DEFAULT_REGIONAL
+    
+    # Match-V5 API只能使用区域端点
+    if regional == "kr":
+        regional = "asia"
+    if regional not in REGIONAL:
+        regional = "asia"
+    
     base = REGIONAL[regional]
     url = f"{base}/lol/match/v5/matches/{match_id}"
     result = _get(url)
@@ -347,24 +370,22 @@ def get_league_entries(summoner_id, platform=None):
     return result
 
 
-def get_player_full_info(game_name, tag_line, platform=None):
+def get_player_full_info(game_name, tag_line, platform=None, region=None):
     """
-    一站式查询：获取玩家完整信息
+    一站式查询：获取玩家完整信息（优化版，使用并发请求）
     返回: 账号信息 + 召唤师信息 + 排位 + 英雄熟练度 + 最近10场比赛
     """
     platform = platform or DEFAULT_PLATFORM
+    region = region or DEFAULT_REGIONAL
 
-    # 1. 获取puuid
     account = get_account_by_riot_id(game_name, tag_line)
     if not account.get("success"):
         return account
 
     puuid = account["puuid"]
 
-    # 2. 获取召唤师信息
     summoner = get_summoner_by_puuid(puuid, platform)
     if not summoner.get("success"):
-        # 召唤师不在该平台，尝试其他平台
         for alt_platform in ["sg2", "na1", "euw1"]:
             if alt_platform == platform:
                 continue
@@ -373,30 +394,57 @@ def get_player_full_info(game_name, tag_line, platform=None):
                 platform = alt_platform
                 break
 
-    # 3. 获取排位段位
+    summoner_id = summoner.get("id") if summoner.get("success") else None
+
     rank = {}
-    if summoner.get("success") and summoner.get("id"):
-        rank_result = get_league_entries(summoner["id"], platform)
-        if rank_result.get("success"):
-            rank = rank_result["data"]
-
-    # 4. 获取英雄熟练度
-    masteries = get_all_champion_masteries(puuid, platform)
-
-    # 5. 获取最近10场比赛
-    match_result = get_match_ids(puuid, count=10)
+    masteries = []
     matches = []
-    if match_result.get("success") and match_result.get("match_ids"):
-        for mid in match_result["match_ids"][:10]:
-            detail = get_match_detail(mid)
-            if detail.get("success"):
-                matches.append(detail)
+
+    with ThreadPoolExecutor(max_workers=3) as executor:
+        future_rank = None
+        future_masteries = None
+        future_match_ids = None
+
+        if summoner_id:
+            future_rank = executor.submit(get_league_entries, summoner_id, platform)
+        future_masteries = executor.submit(get_all_champion_masteries, puuid, platform)
+        future_match_ids = executor.submit(get_match_ids, puuid, 10, region)
+
+        if future_rank:
+            rank_result = future_rank.result()
+            if rank_result.get("success"):
+                rank = rank_result["data"]
+
+        if future_masteries:
+            masteries_result = future_masteries.result()
+            if masteries_result.get("success"):
+                masteries = masteries_result.get("masteries", [])
+
+        match_ids = []
+        if future_match_ids:
+            match_result = future_match_ids.result()
+            if match_result.get("success"):
+                match_ids = match_result.get("match_ids", [])[:10]
+
+    if match_ids:
+        match_details = {}
+        with ThreadPoolExecutor(max_workers=10) as executor:
+            future_to_mid = {executor.submit(get_match_detail, mid, region): mid for mid in match_ids}
+            for future in as_completed(future_to_mid):
+                mid = future_to_mid[future]
+                detail = future.result()
+                if detail.get("success"):
+                    match_details[mid] = detail
+        for mid in match_ids:
+            if mid in match_details:
+                matches.append(match_details[mid])
 
     return {
         "success": True,
         "account": account,
         "summoner": summoner if summoner.get("success") else None,
         "rank": rank,
-        "masteries": masteries.get("masteries", []) if masteries.get("success") else [],
+        "masteries": masteries,
         "matches": matches,
+        "fetch_region": region,
     }

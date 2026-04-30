@@ -1,0 +1,3294 @@
+{
+  "Aatrox": {
+    "name": "暗裔剑魔",
+    "title": "亚托克斯",
+    "faction": "shurima",
+    "faction_cn": "恕瑞玛",
+    "total_chars": 23193,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Modern History",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Aatrox.json"
+  },
+  "Ahri": {
+    "name": "九尾妖狐",
+    "title": "阿狸",
+    "faction": "ionia",
+    "faction_cn": "艾欧尼亚",
+    "total_chars": 43690,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Modern History",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Ahri.json"
+  },
+  "Akali": {
+    "name": "离群之刺",
+    "title": "阿卡丽",
+    "faction": "ionia",
+    "faction_cn": "艾欧尼亚",
+    "total_chars": 29928,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Modern History",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Akali.json"
+  },
+  "Akshan": {
+    "name": "影哨",
+    "title": "阿克尚",
+    "faction": "shurima",
+    "faction_cn": "恕瑞玛",
+    "total_chars": 12013,
+    "sections": [
+      "Background",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Akshan.json"
+  },
+  "Alistar": {
+    "name": "牛头酋长",
+    "title": "阿利斯塔",
+    "faction": "noxus",
+    "faction_cn": "诺克萨斯",
+    "total_chars": 12714,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Modern History",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Alistar.json"
+  },
+  "Ambessa": {
+    "name": "铁血狼母",
+    "title": "",
+    "faction": "noxus",
+    "faction_cn": "诺克萨斯",
+    "total_chars": 11254,
+    "sections": [
+      "Full Page"
+    ],
+    "file": "champions/Ambessa.json"
+  },
+  "Amumu": {
+    "name": "殇之木乃伊",
+    "title": "阿木木",
+    "faction": "shurima",
+    "faction_cn": "恕瑞玛",
+    "total_chars": 12673,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Modern History",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Amumu.json"
+  },
+  "Anivia": {
+    "name": "冰晶凤凰",
+    "title": "艾尼维亚",
+    "faction": "freljord",
+    "faction_cn": "弗雷尔卓德",
+    "total_chars": 12780,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Modern History",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Anivia.json"
+  },
+  "Annie": {
+    "name": "黑暗之女",
+    "title": "安妮",
+    "faction": "noxus",
+    "faction_cn": "诺克萨斯",
+    "total_chars": 21208,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Family History",
+      "Modern History",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Annie.json"
+  },
+  "Aphelios": {
+    "name": "残月之肃",
+    "title": "厄斐琉斯",
+    "faction": "mount-targon",
+    "faction_cn": "巨神峰",
+    "total_chars": 20945,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Modern History",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Aphelios.json"
+  },
+  "Ashe": {
+    "name": "寒冰射手",
+    "title": "艾希",
+    "faction": "",
+    "faction_cn": "",
+    "total_chars": 11060,
+    "sections": [
+      "Background",
+      "Early life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Ashe.json"
+  },
+  "AurelionSol": {
+    "name": "铸星龙王",
+    "title": "奥瑞利安·索尔",
+    "faction": "mount-targon",
+    "faction_cn": "巨神峰",
+    "total_chars": 8790,
+    "sections": [
+      "Background",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/AurelionSol.json"
+  },
+  "Aurora": {
+    "name": "双界灵兔",
+    "title": "",
+    "faction": "freljord",
+    "faction_cn": "弗雷尔卓德",
+    "total_chars": 8353,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Aurora.json"
+  },
+  "Azir": {
+    "name": "沙漠皇帝",
+    "title": "阿兹尔",
+    "faction": "shurima",
+    "faction_cn": "恕瑞玛",
+    "total_chars": 8896,
+    "sections": [
+      "Background",
+      "Early life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Azir.json"
+  },
+  "Bard": {
+    "name": "星界游神",
+    "title": "巴德",
+    "faction": "ionia",
+    "faction_cn": "艾欧尼亚",
+    "total_chars": 15073,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Modern History",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Bard.json"
+  },
+  "Blitzcrank": {
+    "name": "蒸汽机器人",
+    "title": "布里茨",
+    "faction": "zaun",
+    "faction_cn": "祖安",
+    "total_chars": 10329,
+    "sections": [
+      "Background",
+      "Modern History",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Blitzcrank.json"
+  },
+  "Brand": {
+    "name": "复仇焰魂",
+    "title": "布兰德",
+    "faction": "noxus",
+    "faction_cn": "诺克萨斯",
+    "total_chars": 9319,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Brand.json"
+  },
+  "Braum": {
+    "name": "弗雷尔卓德之心",
+    "title": "布隆",
+    "faction": "freljord",
+    "faction_cn": "弗雷尔卓德",
+    "total_chars": 9655,
+    "sections": [
+      "Background",
+      "Early life",
+      "Contemporary history",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Braum.json"
+  },
+  "Briar": {
+    "name": "狂厄蔷薇",
+    "title": "",
+    "faction": "noxus",
+    "faction_cn": "诺克萨斯",
+    "total_chars": 10963,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Briar.json"
+  },
+  "Caitlyn": {
+    "name": "皮城女警",
+    "title": "凯特琳",
+    "faction": "piltover",
+    "faction_cn": "皮尔特沃夫",
+    "total_chars": 7836,
+    "sections": [
+      "Full Page"
+    ],
+    "file": "champions/Caitlyn.json"
+  },
+  "Camille": {
+    "name": "青钢影",
+    "title": "卡蜜尔",
+    "faction": "piltover",
+    "faction_cn": "皮尔特沃夫",
+    "total_chars": 14582,
+    "sections": [
+      "Background",
+      "Early life",
+      "Contemporary history",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Camille.json"
+  },
+  "Cassiopeia": {
+    "name": "魔蛇之拥",
+    "title": "卡西奥佩娅",
+    "faction": "shurima",
+    "faction_cn": "恕瑞玛",
+    "total_chars": 7312,
+    "sections": [
+      "Background",
+      "Early life",
+      "Contemporary history",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Cassiopeia.json"
+  },
+  "Chogath": {
+    "name": "虚空恐惧",
+    "title": "科加斯",
+    "faction": "void",
+    "faction_cn": "虚空之地",
+    "total_chars": 1941,
+    "sections": [
+      "Background",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Chogath.json"
+  },
+  "Corki": {
+    "name": "英勇投弹手",
+    "title": "库奇",
+    "faction": "bandle-city",
+    "faction_cn": "班德尔城",
+    "total_chars": 2813,
+    "sections": [
+      "Background",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Corki.json"
+  },
+  "Darius": {
+    "name": "诺克萨斯之手",
+    "title": "德莱厄斯",
+    "faction": "noxus",
+    "faction_cn": "诺克萨斯",
+    "total_chars": 8175,
+    "sections": [
+      "Background",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Darius.json"
+  },
+  "Diana": {
+    "name": "皎月女神",
+    "title": "黛安娜",
+    "faction": "mount-targon",
+    "faction_cn": "巨神峰",
+    "total_chars": 39421,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Modern History",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Diana.json"
+  },
+  "DrMundo": {
+    "name": "祖安狂人",
+    "title": "蒙多医生",
+    "faction": "zaun",
+    "faction_cn": "祖安",
+    "total_chars": 3647,
+    "sections": [
+      "Background",
+      "Early life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/DrMundo.json"
+  },
+  "Draven": {
+    "name": "荣耀行刑官",
+    "title": "德莱文",
+    "faction": "noxus",
+    "faction_cn": "诺克萨斯",
+    "total_chars": 4400,
+    "sections": [
+      "Background",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Draven.json"
+  },
+  "Ekko": {
+    "name": "时间刺客",
+    "title": "艾克",
+    "faction": "zaun",
+    "faction_cn": "祖安",
+    "total_chars": 12536,
+    "sections": [
+      "Full Page"
+    ],
+    "file": "champions/Ekko.json"
+  },
+  "Elise": {
+    "name": "蜘蛛女皇",
+    "title": "伊莉丝",
+    "faction": "shadow-isles",
+    "faction_cn": "暗影岛",
+    "total_chars": 4665,
+    "sections": [
+      "Background",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Elise.json"
+  },
+  "Evelynn": {
+    "name": "痛苦之拥",
+    "title": "伊芙琳",
+    "faction": "ionia",
+    "faction_cn": "艾欧尼亚",
+    "total_chars": 5217,
+    "sections": [
+      "Background",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Evelynn.json"
+  },
+  "Ezreal": {
+    "name": "探险家",
+    "title": "伊泽瑞尔",
+    "faction": "piltover",
+    "faction_cn": "皮尔特沃夫",
+    "total_chars": 33624,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Disappearance of Parents",
+      "Modern History",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations",
+      "Piltover Explorers Guild"
+    ],
+    "file": "champions/Ezreal.json"
+  },
+  "Fiddlesticks": {
+    "name": "远古恐惧",
+    "title": "费德提克",
+    "faction": "demacia",
+    "faction_cn": "德玛西亚",
+    "total_chars": 4696,
+    "sections": [
+      "Background",
+      "Disappearances and The Return",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Fiddlesticks.json"
+  },
+  "Fiora": {
+    "name": "无双剑姬",
+    "title": "菲奥娜",
+    "faction": "demacia",
+    "faction_cn": "德玛西亚",
+    "total_chars": 1407,
+    "sections": [
+      "Appearance",
+      "Personality",
+      "Relations"
+    ],
+    "file": "champions/Fiora.json"
+  },
+  "Fizz": {
+    "name": "潮汐海灵",
+    "title": "菲兹",
+    "faction": "bilgewater",
+    "faction_cn": "比尔吉沃特",
+    "total_chars": 8541,
+    "sections": [
+      "Background",
+      "Early life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Fizz.json"
+  },
+  "Galio": {
+    "name": "正义巨像",
+    "title": "加里奥",
+    "faction": "demacia",
+    "faction_cn": "德玛西亚",
+    "total_chars": 3100,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Galio.json"
+  },
+  "Gangplank": {
+    "name": "海洋之灾",
+    "title": "普朗克",
+    "faction": "bilgewater",
+    "faction_cn": "比尔吉沃特",
+    "total_chars": 2119,
+    "sections": [
+      "Personality",
+      "Relations"
+    ],
+    "file": "champions/Gangplank.json"
+  },
+  "Garen": {
+    "name": "德玛西亚之力",
+    "title": "盖伦",
+    "faction": "demacia",
+    "faction_cn": "德玛西亚",
+    "total_chars": 3723,
+    "sections": [
+      "Background",
+      "Early life",
+      "Recent history",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Garen.json"
+  },
+  "Gnar": {
+    "name": "迷失之牙",
+    "title": "纳尔",
+    "faction": "freljord",
+    "faction_cn": "弗雷尔卓德",
+    "total_chars": 10057,
+    "sections": [
+      "Background",
+      "Early life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Gnar.json"
+  },
+  "Gragas": {
+    "name": "酒桶",
+    "title": "古拉加斯",
+    "faction": "freljord",
+    "faction_cn": "弗雷尔卓德",
+    "total_chars": 3963,
+    "sections": [
+      "Background",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Gragas.json"
+  },
+  "Graves": {
+    "name": "法外狂徒",
+    "title": "格雷福斯",
+    "faction": "bilgewater",
+    "faction_cn": "比尔吉沃特",
+    "total_chars": 13203,
+    "sections": [
+      "Background",
+      "Early life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Graves.json"
+  },
+  "Gwen": {
+    "name": "灵罗娃娃",
+    "title": "格温",
+    "faction": "shadow-isles",
+    "faction_cn": "暗影岛",
+    "total_chars": 9785,
+    "sections": [
+      "Background",
+      "Early life",
+      "Contemporary history",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Gwen.json"
+  },
+  "Hecarim": {
+    "name": "战争之影",
+    "title": "赫卡里姆",
+    "faction": "shadow-isles",
+    "faction_cn": "暗影岛",
+    "total_chars": 6669,
+    "sections": [
+      "Background",
+      "Early life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Hecarim.json"
+  },
+  "Heimerdinger": {
+    "name": "大发明家",
+    "title": "黑默丁格",
+    "faction": "piltover",
+    "faction_cn": "皮尔特沃夫",
+    "total_chars": 1303,
+    "sections": [
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Heimerdinger.json"
+  },
+  "Hwei": {
+    "name": "异画师",
+    "title": "",
+    "faction": "ionia",
+    "faction_cn": "艾欧尼亚",
+    "total_chars": 7853,
+    "sections": [
+      "Background",
+      "Early life in Koyehn",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Hwei.json"
+  },
+  "Illaoi": {
+    "name": "海兽祭司",
+    "title": "俄洛伊",
+    "faction": "bilgewater",
+    "faction_cn": "比尔吉沃特",
+    "total_chars": 4965,
+    "sections": [
+      "Background",
+      "Early life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Illaoi.json"
+  },
+  "Irelia": {
+    "name": "刀锋舞者",
+    "title": "艾瑞莉娅",
+    "faction": "ionia",
+    "faction_cn": "艾欧尼亚",
+    "total_chars": 11995,
+    "sections": [
+      "Background",
+      "Early life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Irelia.json"
+  },
+  "Ivern": {
+    "name": "翠神",
+    "title": "艾翁",
+    "faction": "ionia",
+    "faction_cn": "艾欧尼亚",
+    "total_chars": 5490,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Ivern.json"
+  },
+  "Janna": {
+    "name": "风暴之怒",
+    "title": "迦娜",
+    "faction": "zaun",
+    "faction_cn": "祖安",
+    "total_chars": 6823,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Janna.json"
+  },
+  "JarvanIV": {
+    "name": "德玛西亚皇子",
+    "title": "嘉文四世",
+    "faction": "demacia",
+    "faction_cn": "德玛西亚",
+    "total_chars": 1348,
+    "sections": [
+      "Personality",
+      "Relations"
+    ],
+    "file": "champions/JarvanIV.json"
+  },
+  "Jax": {
+    "name": "武器大师",
+    "title": "贾克斯",
+    "faction": "shurima",
+    "faction_cn": "恕瑞玛",
+    "total_chars": 5893,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Jax.json"
+  },
+  "Jayce": {
+    "name": "未来守护者",
+    "title": "杰斯",
+    "faction": "piltover",
+    "faction_cn": "皮尔特沃夫",
+    "total_chars": 1156,
+    "sections": [
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relationships"
+    ],
+    "file": "champions/Jayce.json"
+  },
+  "Jhin": {
+    "name": "戏命师",
+    "title": "烬",
+    "faction": "ionia",
+    "faction_cn": "艾欧尼亚",
+    "total_chars": 9156,
+    "sections": [
+      "Background",
+      "Early life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Jhin.json"
+  },
+  "Jinx": {
+    "name": "暴走萝莉",
+    "title": "金克丝",
+    "faction": "zaun",
+    "faction_cn": "祖安",
+    "total_chars": 6193,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Contemporary History",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Jinx.json"
+  },
+  "Kaisa": {
+    "name": "虚空之女",
+    "title": "卡莎",
+    "faction": "void",
+    "faction_cn": "虚空之地",
+    "total_chars": 11355,
+    "sections": [
+      "Background",
+      "Early life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Kaisa.json"
+  },
+  "Kalista": {
+    "name": "复仇之矛",
+    "title": "卡莉丝塔",
+    "faction": "shadow-isles",
+    "faction_cn": "暗影岛",
+    "total_chars": 9256,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Kalista.json"
+  },
+  "Karma": {
+    "name": "天启者",
+    "title": "卡尔玛",
+    "faction": "ionia",
+    "faction_cn": "艾欧尼亚",
+    "total_chars": 11834,
+    "sections": [
+      "Background",
+      "Early life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Karma.json"
+  },
+  "Karthus": {
+    "name": "死亡颂唱者",
+    "title": "卡尔萨斯",
+    "faction": "shadow-isles",
+    "faction_cn": "暗影岛",
+    "total_chars": 4093,
+    "sections": [
+      "Background",
+      "Early life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Karthus.json"
+  },
+  "Kassadin": {
+    "name": "虚空行者",
+    "title": "卡萨丁",
+    "faction": "void",
+    "faction_cn": "虚空之地",
+    "total_chars": 4910,
+    "sections": [
+      "Background",
+      "Early life",
+      "Appearance",
+      "Personality",
+      "Relations"
+    ],
+    "file": "champions/Kassadin.json"
+  },
+  "Katarina": {
+    "name": "不祥之刃",
+    "title": "卡特琳娜",
+    "faction": "noxus",
+    "faction_cn": "诺克萨斯",
+    "total_chars": 16118,
+    "sections": [
+      "Background",
+      "Early life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Katarina.json"
+  },
+  "Kayle": {
+    "name": "正义天使",
+    "title": "凯尔",
+    "faction": "demacia",
+    "faction_cn": "德玛西亚",
+    "total_chars": 12829,
+    "sections": [
+      "Background",
+      "Early life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Kayle.json"
+  },
+  "Kayn": {
+    "name": "影流之镰",
+    "title": "凯隐",
+    "faction": "ionia",
+    "faction_cn": "艾欧尼亚",
+    "total_chars": 8509,
+    "sections": [
+      "Background",
+      "Early life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Kayn.json"
+  },
+  "Kennen": {
+    "name": "狂暴之心",
+    "title": "凯南",
+    "faction": "ionia",
+    "faction_cn": "艾欧尼亚",
+    "total_chars": 6966,
+    "sections": [
+      "Background",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Kennen.json"
+  },
+  "Khazix": {
+    "name": "虚空掠夺者",
+    "title": "卡兹克",
+    "faction": "void",
+    "faction_cn": "虚空之地",
+    "total_chars": 8831,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Modern History",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Khazix.json"
+  },
+  "Kindred": {
+    "name": "永猎双子",
+    "title": "千珏",
+    "faction": "freljord",
+    "faction_cn": "弗雷尔卓德",
+    "total_chars": 5049,
+    "sections": [
+      "Background",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Kindred.json"
+  },
+  "Kled": {
+    "name": "暴怒骑士",
+    "title": "克烈",
+    "faction": "noxus",
+    "faction_cn": "诺克萨斯",
+    "total_chars": 1959,
+    "sections": [
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Kled.json"
+  },
+  "KogMaw": {
+    "name": "深渊巨口",
+    "title": "克格莫",
+    "faction": "void",
+    "faction_cn": "虚空之地",
+    "total_chars": 2279,
+    "sections": [
+      "Background",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/KogMaw.json"
+  },
+  "Leblanc": {
+    "name": "诡术妖姬",
+    "title": "乐芙兰",
+    "faction": "noxus",
+    "faction_cn": "诺克萨斯",
+    "total_chars": 8442,
+    "sections": [
+      "Background",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Leblanc.json"
+  },
+  "LeeSin": {
+    "name": "盲僧",
+    "title": "李青",
+    "faction": "ionia",
+    "faction_cn": "艾欧尼亚",
+    "total_chars": 478,
+    "sections": [
+      "Personality",
+      "Relations"
+    ],
+    "file": "champions/LeeSin.json"
+  },
+  "Leona": {
+    "name": "曙光女神",
+    "title": "蕾欧娜",
+    "faction": "mount-targon",
+    "faction_cn": "巨神峰",
+    "total_chars": 13652,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Relationship with Diana",
+      "Modern History",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Leona.json"
+  },
+  "Lillia": {
+    "name": "含羞蓓蕾",
+    "title": "莉莉娅",
+    "faction": "ionia",
+    "faction_cn": "艾欧尼亚",
+    "total_chars": 14332,
+    "sections": [
+      "Background",
+      "Family History",
+      "Early Life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Lillia.json"
+  },
+  "Lissandra": {
+    "name": "冰霜女巫",
+    "title": "丽桑卓",
+    "faction": "freljord",
+    "faction_cn": "弗雷尔卓德",
+    "total_chars": 12707,
+    "sections": [
+      "Background",
+      "Early life",
+      "Story Hunting",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Lissandra.json"
+  },
+  "Lucian": {
+    "name": "圣枪游侠",
+    "title": "卢锡安",
+    "faction": "demacia",
+    "faction_cn": "德玛西亚",
+    "total_chars": 4457,
+    "sections": [
+      "Background",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Lucian.json"
+  },
+  "Lulu": {
+    "name": "仙灵女巫",
+    "title": "璐璐",
+    "faction": "bandle-city",
+    "faction_cn": "班德尔城",
+    "total_chars": 15233,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Modern History",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Lulu.json"
+  },
+  "Lux": {
+    "name": "光辉女郎",
+    "title": "拉克丝",
+    "faction": "demacia",
+    "faction_cn": "德玛西亚",
+    "total_chars": 10904,
+    "sections": [
+      "Background",
+      "Early life",
+      "Contemporary history",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Lux.json"
+  },
+  "Malphite": {
+    "name": "熔岩巨兽",
+    "title": "墨菲特",
+    "faction": "ionia",
+    "faction_cn": "艾欧尼亚",
+    "total_chars": 1732,
+    "sections": [
+      "Background",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Malphite.json"
+  },
+  "Malzahar": {
+    "name": "虚空先知",
+    "title": "玛尔扎哈",
+    "faction": "shurima",
+    "faction_cn": "恕瑞玛",
+    "total_chars": 11812,
+    "sections": [
+      "Background",
+      "Early life",
+      "Contemporary history",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Malzahar.json"
+  },
+  "Maokai": {
+    "name": "扭曲树精",
+    "title": "茂凯",
+    "faction": "shadow-isles",
+    "faction_cn": "暗影岛",
+    "total_chars": 1786,
+    "sections": [
+      "Background",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Maokai.json"
+  },
+  "MasterYi": {
+    "name": "无极剑圣",
+    "title": "易",
+    "faction": "ionia",
+    "faction_cn": "艾欧尼亚",
+    "total_chars": 3947,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/MasterYi.json"
+  },
+  "Mel": {
+    "name": "流光镜影",
+    "title": "",
+    "faction": "noxus",
+    "faction_cn": "诺克萨斯",
+    "total_chars": 17653,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations",
+      "Arcane Show Appearances"
+    ],
+    "file": "champions/Mel.json"
+  },
+  "Milio": {
+    "name": "明烛",
+    "title": "",
+    "faction": "ionia",
+    "faction_cn": "艾欧尼亚",
+    "total_chars": 13936,
+    "sections": [
+      "Background",
+      "Family History",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Milio.json"
+  },
+  "MissFortune": {
+    "name": "赏金猎人",
+    "title": "厄运小姐",
+    "faction": "bilgewater",
+    "faction_cn": "比尔吉沃特",
+    "total_chars": 7504,
+    "sections": [
+      "Background",
+      "Early life",
+      "Contemporary history",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/MissFortune.json"
+  },
+  "MonkeyKing": {
+    "name": "齐天大圣",
+    "title": "孙悟空",
+    "faction": "ionia",
+    "faction_cn": "艾欧尼亚",
+    "total_chars": 6703,
+    "sections": [
+      "Background",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/MonkeyKing.json"
+  },
+  "Mordekaiser": {
+    "name": "铁铠冥魂",
+    "title": "莫德凯撒",
+    "faction": "shadow-isles",
+    "faction_cn": "暗影岛",
+    "total_chars": 3272,
+    "sections": [
+      "Background",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Mordekaiser.json"
+  },
+  "Morgana": {
+    "name": "堕落天使",
+    "title": "莫甘娜",
+    "faction": "demacia",
+    "faction_cn": "德玛西亚",
+    "total_chars": 14021,
+    "sections": [
+      "Background",
+      "Early life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Morgana.json"
+  },
+  "Naafiri": {
+    "name": "百裂冥犬",
+    "title": "",
+    "faction": "shurima",
+    "faction_cn": "恕瑞玛",
+    "total_chars": 10516,
+    "sections": [
+      "Background",
+      "Early life",
+      "Modern History",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Naafiri.json"
+  },
+  "Nami": {
+    "name": "唤潮鲛姬",
+    "title": "娜美",
+    "faction": "mount-targon",
+    "faction_cn": "巨神峰",
+    "total_chars": 4485,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Nami.json"
+  },
+  "Nasus": {
+    "name": "沙漠死神",
+    "title": "内瑟斯",
+    "faction": "shurima",
+    "faction_cn": "恕瑞玛",
+    "total_chars": 3193,
+    "sections": [
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Nasus.json"
+  },
+  "Nautilus": {
+    "name": "深海泰坦",
+    "title": "诺提勒斯",
+    "faction": "bilgewater",
+    "faction_cn": "比尔吉沃特",
+    "total_chars": 6753,
+    "sections": [
+      "Background",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Nautilus.json"
+  },
+  "Neeko": {
+    "name": "万花通灵",
+    "title": "妮蔻",
+    "faction": "ionia",
+    "faction_cn": "艾欧尼亚",
+    "total_chars": 12466,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Modern History",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Neeko.json"
+  },
+  "Nidalee": {
+    "name": "狂野女猎手",
+    "title": "奈德丽",
+    "faction": "ixtal",
+    "faction_cn": "以绪塔尔",
+    "total_chars": 22618,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Modern History",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Nidalee.json"
+  },
+  "Nilah": {
+    "name": "不羁之悦",
+    "title": "",
+    "faction": "bilgewater",
+    "faction_cn": "比尔吉沃特",
+    "total_chars": 14923,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Modern History",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Nilah.json"
+  },
+  "Nocturne": {
+    "name": "永恒梦魇",
+    "title": "魔腾",
+    "faction": "shadow-isles",
+    "faction_cn": "暗影岛",
+    "total_chars": 3040,
+    "sections": [
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Nocturne.json"
+  },
+  "Nunu": {
+    "name": "雪原双子",
+    "title": "努努和威朗普",
+    "faction": "freljord",
+    "faction_cn": "弗雷尔卓德",
+    "total_chars": 8051,
+    "sections": [
+      "Background",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Nunu.json"
+  },
+  "Olaf": {
+    "name": "狂战士",
+    "title": "奥拉夫",
+    "faction": "freljord",
+    "faction_cn": "弗雷尔卓德",
+    "total_chars": 5184,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Olaf.json"
+  },
+  "Orianna": {
+    "name": "发条魔灵",
+    "title": "奥莉安娜",
+    "faction": "piltover",
+    "faction_cn": "皮尔特沃夫",
+    "total_chars": 8271,
+    "sections": [
+      "Background",
+      "Early life",
+      "Appearance",
+      "Personality",
+      "Relations"
+    ],
+    "file": "champions/Orianna.json"
+  },
+  "Ornn": {
+    "name": "山隐之焰",
+    "title": "奥恩",
+    "faction": "freljord",
+    "faction_cn": "弗雷尔卓德",
+    "total_chars": 12151,
+    "sections": [
+      "Background",
+      "Early life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Ornn.json"
+  },
+  "Pantheon": {
+    "name": "不屈之枪",
+    "title": "潘森",
+    "faction": "mount-targon",
+    "faction_cn": "巨神峰",
+    "total_chars": 13184,
+    "sections": [
+      "Background",
+      "Early life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Pantheon.json"
+  },
+  "Poppy": {
+    "name": "圣锤之毅",
+    "title": "波比",
+    "faction": "demacia",
+    "faction_cn": "德玛西亚",
+    "total_chars": 2326,
+    "sections": [
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Poppy.json"
+  },
+  "Pyke": {
+    "name": "血港鬼影",
+    "title": "派克",
+    "faction": "bilgewater",
+    "faction_cn": "比尔吉沃特",
+    "total_chars": 6933,
+    "sections": [
+      "Background",
+      "Early life",
+      "Contemporary history",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Pyke.json"
+  },
+  "Qiyana": {
+    "name": "元素女皇",
+    "title": "奇亚娜",
+    "faction": "ixtal",
+    "faction_cn": "以绪塔尔",
+    "total_chars": 11639,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Contemporary history",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Qiyana.json"
+  },
+  "Quinn": {
+    "name": "德玛西亚之翼",
+    "title": "奎因",
+    "faction": "demacia",
+    "faction_cn": "德玛西亚",
+    "total_chars": 7769,
+    "sections": [
+      "Background",
+      "Early life",
+      "Contemporary history",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Quinn.json"
+  },
+  "Rakan": {
+    "name": "幻翎",
+    "title": "洛",
+    "faction": "ionia",
+    "faction_cn": "艾欧尼亚",
+    "total_chars": 10842,
+    "sections": [
+      "Background",
+      "Early life",
+      "Contemporary history",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Rakan.json"
+  },
+  "Rammus": {
+    "name": "披甲龙龟",
+    "title": "拉莫斯",
+    "faction": "shurima",
+    "faction_cn": "恕瑞玛",
+    "total_chars": 1103,
+    "sections": [
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Rammus.json"
+  },
+  "RekSai": {
+    "name": "虚空遁地兽",
+    "title": "雷克塞",
+    "faction": "void",
+    "faction_cn": "虚空之地",
+    "total_chars": 5628,
+    "sections": [
+      "Background",
+      "Early life",
+      "Contemporary history",
+      "Appearance",
+      "Personality",
+      "Relations"
+    ],
+    "file": "champions/RekSai.json"
+  },
+  "Rell": {
+    "name": "镕铁少女",
+    "title": "芮尔",
+    "faction": "noxus",
+    "faction_cn": "诺克萨斯",
+    "total_chars": 18787,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Modern History",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Rell.json"
+  },
+  "Renata": {
+    "name": "炼金男爵",
+    "title": "烈娜塔 · 戈拉斯克",
+    "faction": "zaun",
+    "faction_cn": "祖安",
+    "total_chars": 5735,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Renata.json"
+  },
+  "Renekton": {
+    "name": "荒漠屠夫",
+    "title": "雷克顿",
+    "faction": "shurima",
+    "faction_cn": "恕瑞玛",
+    "total_chars": 10026,
+    "sections": [
+      "Background",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Renekton.json"
+  },
+  "Rengar": {
+    "name": "傲之追猎者",
+    "title": "雷恩加尔",
+    "faction": "ixtal",
+    "faction_cn": "以绪塔尔",
+    "total_chars": 9552,
+    "sections": [
+      "Background",
+      "Early life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Rengar.json"
+  },
+  "Riven": {
+    "name": "放逐之刃",
+    "title": "锐雯",
+    "faction": "noxus",
+    "faction_cn": "诺克萨斯",
+    "total_chars": 14400,
+    "sections": [
+      "Background",
+      "Early life",
+      "Contemporary history",
+      "Personality",
+      "Appearance",
+      "Relations"
+    ],
+    "file": "champions/Riven.json"
+  },
+  "Rumble": {
+    "name": "机械公敌",
+    "title": "兰博",
+    "faction": "bandle-city",
+    "faction_cn": "班德尔城",
+    "total_chars": 4360,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Rumble.json"
+  },
+  "Ryze": {
+    "name": "符文法师",
+    "title": "瑞兹",
+    "faction": "demacia",
+    "faction_cn": "德玛西亚",
+    "total_chars": 9108,
+    "sections": [
+      "Background",
+      "Early life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Ryze.json"
+  },
+  "Samira": {
+    "name": "沙漠玫瑰",
+    "title": "莎弥拉",
+    "faction": "shurima",
+    "faction_cn": "恕瑞玛",
+    "total_chars": 6552,
+    "sections": [
+      "Background",
+      "Early life",
+      "Contemporary history",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Samira.json"
+  },
+  "Sejuani": {
+    "name": "北地之怒",
+    "title": "瑟庄妮",
+    "faction": "freljord",
+    "faction_cn": "弗雷尔卓德",
+    "total_chars": 10013,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Sejuani.json"
+  },
+  "Senna": {
+    "name": "涤魂圣枪",
+    "title": "赛娜",
+    "faction": "shadow-isles",
+    "faction_cn": "暗影岛",
+    "total_chars": 8240,
+    "sections": [
+      "Background",
+      "Early life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Senna.json"
+  },
+  "Seraphine": {
+    "name": "星籁歌姬",
+    "title": "萨勒芬妮",
+    "faction": "piltover",
+    "faction_cn": "皮尔特沃夫",
+    "total_chars": 7178,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Seraphine.json"
+  },
+  "Sett": {
+    "name": "腕豪",
+    "title": "瑟提",
+    "faction": "ionia",
+    "faction_cn": "艾欧尼亚",
+    "total_chars": 4471,
+    "sections": [
+      "Background",
+      "Early life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Sett.json"
+  },
+  "Shaco": {
+    "name": "恶魔小丑",
+    "title": "萨科",
+    "faction": "demacia",
+    "faction_cn": "德玛西亚",
+    "total_chars": 1546,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Shaco.json"
+  },
+  "Shen": {
+    "name": "暮光之眼",
+    "title": "慎",
+    "faction": "ionia",
+    "faction_cn": "艾欧尼亚",
+    "total_chars": 5272,
+    "sections": [
+      "Background",
+      "Early life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Shen.json"
+  },
+  "Shyvana": {
+    "name": "龙血武姬",
+    "title": "希瓦娜",
+    "faction": "demacia",
+    "faction_cn": "德玛西亚",
+    "total_chars": 12782,
+    "sections": [
+      "Background",
+      "Early life",
+      "Contemporary history",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Shyvana.json"
+  },
+  "Singed": {
+    "name": "炼金术士",
+    "title": "辛吉德",
+    "faction": "zaun",
+    "faction_cn": "祖安",
+    "total_chars": 9666,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Singed.json"
+  },
+  "Sion": {
+    "name": "亡灵战神",
+    "title": "赛恩",
+    "faction": "noxus",
+    "faction_cn": "诺克萨斯",
+    "total_chars": 3443,
+    "sections": [
+      "Background",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Sion.json"
+  },
+  "Sivir": {
+    "name": "战争女神",
+    "title": "希维尔",
+    "faction": "shurima",
+    "faction_cn": "恕瑞玛",
+    "total_chars": 9738,
+    "sections": [
+      "Background",
+      "Early life",
+      "Contemporary history",
+      "Personality",
+      "Appearance",
+      "Powers and Abilities",
+      "Relations"
+    ],
+    "file": "champions/Sivir.json"
+  },
+  "Skarner": {
+    "name": "水晶先锋",
+    "title": "斯卡纳",
+    "faction": "shurima",
+    "faction_cn": "恕瑞玛",
+    "total_chars": 4872,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Skarner.json"
+  },
+  "Smolder": {
+    "name": "炽炎雏龙",
+    "title": "",
+    "faction": "demacia",
+    "faction_cn": "德玛西亚",
+    "total_chars": 6992,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Smolder.json"
+  },
+  "Sona": {
+    "name": "琴瑟仙女",
+    "title": "娑娜",
+    "faction": "demacia",
+    "faction_cn": "德玛西亚",
+    "total_chars": 4233,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Contemporary history",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Sona.json"
+  },
+  "Soraka": {
+    "name": "众星之子",
+    "title": "索拉卡",
+    "faction": "mount-targon",
+    "faction_cn": "巨神峰",
+    "total_chars": 11061,
+    "sections": [
+      "Background",
+      "Early life",
+      "Contemporary history",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Soraka.json"
+  },
+  "Swain": {
+    "name": "诺克萨斯统领",
+    "title": "斯维因",
+    "faction": "noxus",
+    "faction_cn": "诺克萨斯",
+    "total_chars": 12928,
+    "sections": [
+      "Background",
+      "Early life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Swain.json"
+  },
+  "Sylas": {
+    "name": "解脱者",
+    "title": "塞拉斯",
+    "faction": "demacia",
+    "faction_cn": "德玛西亚",
+    "total_chars": 11792,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Sylas.json"
+  },
+  "Syndra": {
+    "name": "暗黑元首",
+    "title": "辛德拉",
+    "faction": "ionia",
+    "faction_cn": "艾欧尼亚",
+    "total_chars": 5658,
+    "sections": [
+      "Background",
+      "Early life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Syndra.json"
+  },
+  "TahmKench": {
+    "name": "河流之王",
+    "title": "塔姆",
+    "faction": "bilgewater",
+    "faction_cn": "比尔吉沃特",
+    "total_chars": 4114,
+    "sections": [
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/TahmKench.json"
+  },
+  "Taliyah": {
+    "name": "岩雀",
+    "title": "塔莉垭",
+    "faction": "shurima",
+    "faction_cn": "恕瑞玛",
+    "total_chars": 12647,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Taliyah.json"
+  },
+  "Talon": {
+    "name": "刀锋之影",
+    "title": "泰隆",
+    "faction": "noxus",
+    "faction_cn": "诺克萨斯",
+    "total_chars": 4297,
+    "sections": [
+      "Background",
+      "Early life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Talon.json"
+  },
+  "Taric": {
+    "name": "瓦洛兰之盾",
+    "title": "塔里克",
+    "faction": "mount-targon",
+    "faction_cn": "巨神峰",
+    "total_chars": 3772,
+    "sections": [
+      "Background",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Taric.json"
+  },
+  "Teemo": {
+    "name": "迅捷斥候",
+    "title": "提莫",
+    "faction": "bandle-city",
+    "faction_cn": "班德尔城",
+    "total_chars": 2748,
+    "sections": [
+      "Background",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Teemo.json"
+  },
+  "Thresh": {
+    "name": "魂锁典狱长",
+    "title": "锤石",
+    "faction": "shadow-isles",
+    "faction_cn": "暗影岛",
+    "total_chars": 9982,
+    "sections": [
+      "Background",
+      "Early life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Thresh.json"
+  },
+  "Tristana": {
+    "name": "麦林炮手",
+    "title": "崔丝塔娜",
+    "faction": "bandle-city",
+    "faction_cn": "班德尔城",
+    "total_chars": 9503,
+    "sections": [
+      "Background",
+      "Early life",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Tristana.json"
+  },
+  "Trundle": {
+    "name": "巨魔之王",
+    "title": "特朗德尔",
+    "faction": "freljord",
+    "faction_cn": "弗雷尔卓德",
+    "total_chars": 1332,
+    "sections": [
+      "Appearance",
+      "Personality",
+      "Relations"
+    ],
+    "file": "champions/Trundle.json"
+  },
+  "Tryndamere": {
+    "name": "蛮族之王",
+    "title": "泰达米尔",
+    "faction": "freljord",
+    "faction_cn": "弗雷尔卓德",
+    "total_chars": 5849,
+    "sections": [
+      "Background",
+      "Early life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Tryndamere.json"
+  },
+  "TwistedFate": {
+    "name": "卡牌大师",
+    "title": "崔斯特",
+    "faction": "",
+    "faction_cn": "",
+    "total_chars": 16277,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/TwistedFate.json"
+  },
+  "Twitch": {
+    "name": "瘟疫之源",
+    "title": "图奇",
+    "faction": "zaun",
+    "faction_cn": "祖安",
+    "total_chars": 850,
+    "sections": [
+      "Background",
+      "Contemporary history",
+      "Appearance"
+    ],
+    "file": "champions/Twitch.json"
+  },
+  "Udyr": {
+    "name": "兽灵行者",
+    "title": "乌迪尔",
+    "faction": "freljord",
+    "faction_cn": "弗雷尔卓德",
+    "total_chars": 14105,
+    "sections": [
+      "Background",
+      "Early life",
+      "Contemporary history",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Udyr.json"
+  },
+  "Urgot": {
+    "name": "无畏战车",
+    "title": "厄加特",
+    "faction": "zaun",
+    "faction_cn": "祖安",
+    "total_chars": 6677,
+    "sections": [
+      "Background",
+      "Early life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Urgot.json"
+  },
+  "Varus": {
+    "name": "惩戒之箭",
+    "title": "韦鲁斯",
+    "faction": "ionia",
+    "faction_cn": "艾欧尼亚",
+    "total_chars": 24998,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Modern History",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Varus.json"
+  },
+  "Vayne": {
+    "name": "暗夜猎手",
+    "title": "薇恩",
+    "faction": "demacia",
+    "faction_cn": "德玛西亚",
+    "total_chars": 10041,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Vayne.json"
+  },
+  "Veigar": {
+    "name": "邪恶小法师",
+    "title": "维迦",
+    "faction": "bandle-city",
+    "faction_cn": "班德尔城",
+    "total_chars": 8755,
+    "sections": [
+      "Background",
+      "Early life",
+      "Modern History",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Veigar.json"
+  },
+  "Velkoz": {
+    "name": "虚空之眼",
+    "title": "维克兹",
+    "faction": "void",
+    "faction_cn": "虚空之地",
+    "total_chars": 3240,
+    "sections": [
+      "Background",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Velkoz.json"
+  },
+  "Vex": {
+    "name": "愁云使者",
+    "title": "薇古丝",
+    "faction": "shadow-isles",
+    "faction_cn": "暗影岛",
+    "total_chars": 4246,
+    "sections": [
+      "Background",
+      "Early life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Vex.json"
+  },
+  "Vi": {
+    "name": "皮城执法官",
+    "title": "蔚",
+    "faction": "piltover",
+    "faction_cn": "皮尔特沃夫",
+    "total_chars": 7053,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Contemporary History",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Vi.json"
+  },
+  "Viego": {
+    "name": "破败之王",
+    "title": "佛耶戈",
+    "faction": "shadow-isles",
+    "faction_cn": "暗影岛",
+    "total_chars": 17232,
+    "sections": [
+      "Background",
+      "Early life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Viego.json"
+  },
+  "Viktor": {
+    "name": "机械先驱",
+    "title": "维克托",
+    "faction": "zaun",
+    "faction_cn": "祖安",
+    "total_chars": 11951,
+    "sections": [
+      "Background",
+      "Early life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Viktor.json"
+  },
+  "Vladimir": {
+    "name": "猩红收割者",
+    "title": "弗拉基米尔",
+    "faction": "noxus",
+    "faction_cn": "诺克萨斯",
+    "total_chars": 16887,
+    "sections": [
+      "Background",
+      "Early life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Vladimir.json"
+  },
+  "Volibear": {
+    "name": "不灭狂雷",
+    "title": "沃利贝尔",
+    "faction": "freljord",
+    "faction_cn": "弗雷尔卓德",
+    "total_chars": 3149,
+    "sections": [
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Volibear.json"
+  },
+  "Warwick": {
+    "name": "祖安怒兽",
+    "title": "沃里克",
+    "faction": "zaun",
+    "faction_cn": "祖安",
+    "total_chars": 8373,
+    "sections": [
+      "Background",
+      "Early life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Warwick.json"
+  },
+  "Xayah": {
+    "name": "逆羽",
+    "title": "霞",
+    "faction": "ionia",
+    "faction_cn": "艾欧尼亚",
+    "total_chars": 1976,
+    "sections": [
+      "Background",
+      "Early life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Xayah.json"
+  },
+  "Xerath": {
+    "name": "远古巫灵",
+    "title": "泽拉斯",
+    "faction": "shurima",
+    "faction_cn": "恕瑞玛",
+    "total_chars": 9590,
+    "sections": [
+      "Background",
+      "Early life",
+      "Appearance",
+      "Personality",
+      "Relations"
+    ],
+    "file": "champions/Xerath.json"
+  },
+  "XinZhao": {
+    "name": "德邦总管",
+    "title": "赵信",
+    "faction": "demacia",
+    "faction_cn": "德玛西亚",
+    "total_chars": 3833,
+    "sections": [
+      "Background",
+      "Personality",
+      "Relations"
+    ],
+    "file": "champions/XinZhao.json"
+  },
+  "Yasuo": {
+    "name": "疾风剑豪",
+    "title": "亚索",
+    "faction": "ionia",
+    "faction_cn": "艾欧尼亚",
+    "total_chars": 7586,
+    "sections": [
+      "Background",
+      "Early life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Yasuo.json"
+  },
+  "Yone": {
+    "name": "封魔剑魂",
+    "title": "永恩",
+    "faction": "ionia",
+    "faction_cn": "艾欧尼亚",
+    "total_chars": 7278,
+    "sections": [
+      "Background",
+      "Early life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Yone.json"
+  },
+  "Yorick": {
+    "name": "牧魂人",
+    "title": "约里克",
+    "faction": "shadow-isles",
+    "faction_cn": "暗影岛",
+    "total_chars": 5635,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Yorick.json"
+  },
+  "Yuumi": {
+    "name": "魔法猫咪",
+    "title": "悠米",
+    "faction": "bandle-city",
+    "faction_cn": "班德尔城",
+    "total_chars": 7621,
+    "sections": [
+      "Background",
+      "Early life",
+      "Contemporary history",
+      "Appearance",
+      "Personality",
+      "Relations"
+    ],
+    "file": "champions/Yuumi.json"
+  },
+  "Zac": {
+    "name": "生化魔人",
+    "title": "扎克",
+    "faction": "zaun",
+    "faction_cn": "祖安",
+    "total_chars": 6449,
+    "sections": [
+      "Background",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Zac.json"
+  },
+  "Zed": {
+    "name": "影流之主",
+    "title": "劫",
+    "faction": "ionia",
+    "faction_cn": "艾欧尼亚",
+    "total_chars": 7017,
+    "sections": [
+      "Background",
+      "Early life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Zed.json"
+  },
+  "Zeri": {
+    "name": "祖安花火",
+    "title": "泽丽",
+    "faction": "zaun",
+    "faction_cn": "祖安",
+    "total_chars": 2259,
+    "sections": [
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Zeri.json"
+  },
+  "Ziggs": {
+    "name": "爆破鬼才",
+    "title": "吉格斯",
+    "faction": "zaun",
+    "faction_cn": "祖安",
+    "total_chars": 5521,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Ziggs.json"
+  },
+  "Zilean": {
+    "name": "时光守护者",
+    "title": "基兰",
+    "faction": "shurima",
+    "faction_cn": "恕瑞玛",
+    "total_chars": 3464,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Zilean.json"
+  },
+  "Zoe": {
+    "name": "暮光星灵",
+    "title": "佐伊",
+    "faction": "mount-targon",
+    "faction_cn": "巨神峰",
+    "total_chars": 3327,
+    "sections": [
+      "Background",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Zoe.json"
+  },
+  "Zyra": {
+    "name": "荆棘之兴",
+    "title": "婕拉",
+    "faction": "ixtal",
+    "faction_cn": "以绪塔尔",
+    "total_chars": 3763,
+    "sections": [
+      "Background",
+      "Early Life",
+      "Contemporary history",
+      "Appearance",
+      "Personality",
+      "Abilities",
+      "Relations"
+    ],
+    "file": "champions/Zyra.json"
+  },
+  "faction_bandle-city": {
+    "name": "班德尔城",
+    "slug": "bandle-city",
+    "total_chars": 16786,
+    "sections": [
+      "Lore",
+      "Champions of Bandle City",
+      "Other Related Champions",
+      "History",
+      "Creation of the Gateways",
+      "The Missing Link Reappears",
+      "Locations",
+      "Gateways",
+      "Culture",
+      "Government",
+      "Relations",
+      "<span> <span>Runeterra</span></span>",
+      "Media"
+    ],
+    "champions": [
+      "英勇投弹手",
+      "仙灵女巫",
+      "机械公敌",
+      "迅捷斥候",
+      "麦林炮手",
+      "邪恶小法师",
+      "魔法猫咪"
+    ],
+    "file": "factions/bandle-city.json"
+  },
+  "faction_bilgewater": {
+    "name": "比尔吉沃特",
+    "slug": "bilgewater",
+    "total_chars": 81514,
+    "sections": [
+      "Lore",
+      "Champions of Bilgewater",
+      "Other Related Champions",
+      "History",
+      "Burning Tides",
+      "Shadow and Fortune",
+      "Fortune Smiles",
+      "Ruined King",
+      "Locations",
+      "Bilgewater Bay",
+      "Buhru",
+      "Wildlife",
+      "Culture",
+      "Government",
+      "Relations",
+      "<span> <span>Freljord</span></span>",
+      "<span> <span>Ionia</span></span>",
+      "<span> <span>Ixtal</span></span>",
+      "Mudtown",
+      "<span> <span>Noxus</span></span>",
+      "<span> <span>Piltover</span></span>",
+      "<span> <span>Shadow Isles</span></span>",
+      "Media"
+    ],
+    "champions": [
+      "潮汐海灵",
+      "海洋之灾",
+      "法外狂徒",
+      "海兽祭司",
+      "赏金猎人",
+      "深海泰坦",
+      "",
+      "血港鬼影",
+      "河流之王"
+    ],
+    "file": "factions/bilgewater.json"
+  },
+  "faction_demacia": {
+    "name": "德玛西亚",
+    "slug": "demacia",
+    "total_chars": 98903,
+    "sections": [
+      "Lore",
+      "Champions of Demacia",
+      "Other Related Champions",
+      "History",
+      "Provenance",
+      "Winged Protectors",
+      "Battle of Zeffira",
+      "Battle of the Winged Sisters",
+      "Petricite Colossus",
+      "Death of the King",
+      "Noxian Invasion",
+      "Unshackled",
+      "Turmoil",
+      "The Mageseeker",
+      "Locations",
+      "The Great City of Demacia",
+      "North Demacia",
+      "East Demacia",
+      "South Demacia",
+      "West Demacia",
+      "Wildlife",
+      "Azurite Eagles",
+      "Badgerbears",
+      "Bellswayers",
+      "Crag Beast",
+      "Demacian Tangor",
+      "Fleetfeathers",
+      "Greathorns",
+      "Petricite Trees",
+      "Poros",
+      "Silverwing Raptors",
+      "Tuskvores",
+      "Wyverns",
+      "Culture",
+      "Government",
+      "Relations",
+      "Arbormark",
+      "<span> <span>Freljord</span></span>",
+      "<span> <span>Noxus</span></span>",
+      "Palclyff",
+      "<span> <span>Piltover</span></span>",
+      "<span> <span>Shadow Isles</span></span>",
+      "<span> <span>Targon</span></span>",
+      "Media"
+    ],
+    "champions": [
+      "远古恐惧",
+      "无双剑姬",
+      "正义巨像",
+      "德玛西亚之力",
+      "德玛西亚皇子",
+      "正义天使",
+      "圣枪游侠",
+      "光辉女郎",
+      "堕落天使",
+      "圣锤之毅",
+      "德玛西亚之翼",
+      "符文法师",
+      "恶魔小丑",
+      "龙血武姬",
+      "",
+      "琴瑟仙女",
+      "解脱者",
+      "暗夜猎手",
+      "德邦总管"
+    ],
+    "file": "factions/demacia.json"
+  },
+  "faction_freljord": {
+    "name": "弗雷尔卓德",
+    "slug": "freljord",
+    "total_chars": 104258,
+    "sections": [
+      "Lore",
+      "Champions of the Freljord",
+      "Other Related Champions",
+      "History",
+      "Creation of Freljord",
+      "The Three Sisters",
+      "Battle of the Howling Abyss",
+      "Frostguard's Vigil",
+      "Hero of the Freljord",
+      "Warmother",
+      "Winter's Wrath",
+      "The Avarosan Bloodsworn",
+      "Return of the demi-gods",
+      "Locations",
+      "North Freljord",
+      "East Freljord",
+      "South Freljord",
+      "West Freljord",
+      "Wildlife",
+      "Culture",
+      "Government",
+      "Relations",
+      "<span> <span>Bilgewater</span></span>",
+      "<span> <span>Demacia</span></span>",
+      "<span> <span>Ionia</span></span>",
+      "<span> <span>Noxus</span></span>",
+      "Media"
+    ],
+    "champions": [
+      "冰晶凤凰",
+      "",
+      "弗雷尔卓德之心",
+      "迷失之牙",
+      "酒桶",
+      "永猎双子",
+      "冰霜女巫",
+      "雪原双子",
+      "狂战士",
+      "山隐之焰",
+      "北地之怒",
+      "巨魔之王",
+      "蛮族之王",
+      "兽灵行者",
+      "不灭狂雷"
+    ],
+    "file": "factions/freljord.json"
+  },
+  "faction_ionia": {
+    "name": "艾欧尼亚",
+    "slug": "ionia",
+    "total_chars": 107611,
+    "sections": [
+      "Lore",
+      "Champions of Ionia",
+      "Other Related Champions",
+      "History",
+      "Birth of the Vastaya",
+      "Destruction of the God-Willow",
+      "The Darkin War",
+      "The Golden Demon",
+      "The First Noxian Invasion",
+      "The return of Varus",
+      "The Order of Shadows",
+      "The Battle of Bard Mountain",
+      "Battle of the Placidium",
+      "The Dreaming Pool",
+      "The Second Noxian Invasion",
+      "Locations",
+      "Ionia Island",
+      "Navori",
+      "Shon-Xan",
+      "Fae'lor",
+      "Bahrl",
+      "Bard Mountain",
+      "Houhjo",
+      "Oulin, Qaelin, and Ralin",
+      "Zhyun",
+      "Wildlife",
+      "Culture",
+      "Government",
+      "Relations",
+      "<span> <span>Bilgewater</span></span>",
+      "<span> <span>Demacia</span></span>",
+      "<span> <span>Freljord</span></span>",
+      "<span> <span>Noxus</span></span>",
+      "<span> <span>Piltover</span></span>",
+      "<span> <span>Shadow Isles</span></span>",
+      "<span> <span>Zaun</span></span>",
+      "Media"
+    ],
+    "champions": [
+      "九尾妖狐",
+      "离群之刺",
+      "星界游神",
+      "痛苦之拥",
+      "",
+      "刀锋舞者",
+      "翠神",
+      "戏命师",
+      "天启者",
+      "影流之镰",
+      "狂暴之心",
+      "盲僧",
+      "含羞蓓蕾",
+      "熔岩巨兽",
+      "无极剑圣",
+      "",
+      "齐天大圣",
+      "万花通灵",
+      "幻翎",
+      "腕豪",
+      "暮光之眼",
+      "暗黑元首",
+      "惩戒之箭",
+      "逆羽",
+      "疾风剑豪",
+      "封魔剑魂",
+      "影流之主"
+    ],
+    "file": "factions/ionia.json"
+  },
+  "faction_ixtal": {
+    "name": "以绪塔尔",
+    "slug": "ixtal",
+    "total_chars": 38044,
+    "sections": [
+      "Lore",
+      "Champions of Ixtal",
+      "Related Champions",
+      "History",
+      "Origins of Ixtal",
+      "The Icathian War",
+      "The Rune Wars",
+      "At the Edge of the World",
+      "Locations",
+      "Ixaocan",
+      "Villages",
+      "Ixtali Border",
+      "Wildlife",
+      "Culture",
+      "Government",
+      "Relations",
+      "<span> <span>Bilgewater</span></span>",
+      "<span> <span>Icathia</span></span>",
+      "<span> <span>Noxus</span></span>",
+      "<span> <span>Piltover</span></span>",
+      "<span> <span>Shurima</span></span>",
+      "<span> <span>Targon</span></span>",
+      "Media"
+    ],
+    "champions": [
+      "狂野女猎手",
+      "元素女皇",
+      "傲之追猎者",
+      "荆棘之兴"
+    ],
+    "file": "factions/ixtal.json"
+  },
+  "faction_mount-targon": {
+    "name": "巨神峰",
+    "slug": "mount-targon",
+    "total_chars": 332,
+    "sections": [
+      "Overview"
+    ],
+    "champions": [
+      "残月之肃",
+      "铸星龙王",
+      "皎月女神",
+      "曙光女神",
+      "唤潮鲛姬",
+      "不屈之枪",
+      "众星之子",
+      "瓦洛兰之盾",
+      "暮光星灵"
+    ],
+    "file": "factions/mount-targon.json"
+  },
+  "faction_noxus": {
+    "name": "诺克萨斯",
+    "slug": "noxus",
+    "total_chars": 104851,
+    "sections": [
+      "Champions of Noxus",
+      "Other Related Champions",
+      "History",
+      "Age of Tyranny",
+      "Death to the King",
+      "Invasion of Ionia",
+      "The Battle of Bard Mountain",
+      "Fear",
+      "Trifarix Revolution",
+      "The Shedding of Skin",
+      "Demacian Invasion",
+      "Progress Day",
+      "At the Edge of the World",
+      "Blood of Noxus",
+      "Second invasion of Ionia",
+      "Locations",
+      "The Immortal Bastion",
+      "North Noxus",
+      "East Noxus",
+      "South Noxus",
+      "Noxian Ionia",
+      "Noxian Shurima",
+      "Wildlife",
+      "Culture",
+      "Government",
+      "Relations",
+      "<span> <span>Bilgewater</span></span>",
+      "<span> <span>Demacia</span></span>",
+      "<span> <span>Freljord</span></span>",
+      "<span> <span>Ionia</span></span>",
+      "Palclyff",
+      "<span> <span>Piltover</span></span>",
+      "<span> <span>Shurima</span></span>",
+      "<span> <span>Zaun</span></span>",
+      "Media"
+    ],
+    "champions": [
+      "牛头酋长",
+      "",
+      "黑暗之女",
+      "复仇焰魂",
+      "",
+      "诺克萨斯之手",
+      "荣耀行刑官",
+      "不祥之刃",
+      "暴怒骑士",
+      "诡术妖姬",
+      "",
+      "镕铁少女",
+      "放逐之刃",
+      "亡灵战神",
+      "诺克萨斯统领",
+      "刀锋之影",
+      "猩红收割者"
+    ],
+    "file": "factions/noxus.json"
+  },
+  "faction_piltover": {
+    "name": "皮尔特沃夫",
+    "slug": "piltover",
+    "total_chars": 71469,
+    "sections": [
+      "Lore",
+      "Champions of Piltover",
+      "Other Related Champions",
+      "History",
+      "Birth of Progress Day",
+      "Discovery of the First Hex Crystals",
+      "Get Jinxed!",
+      "Progress Day",
+      "History in Arcane",
+      "The Discovery of Hextech",
+      "Locations",
+      "Connected Cities",
+      "North Piltover",
+      "South Piltover",
+      "Hexdraulic Conveyors",
+      "The Cliff",
+      "Piltover in Arcane",
+      "Wildlife",
+      "Culture",
+      "Government",
+      "Relations",
+      "Aurma",
+      "<span> <span>Bilgewater</span></span>",
+      "<span> <span>Demacia</span></span>",
+      "Holdrum",
+      "<span> <span>Ixtal</span></span>",
+      "Kumangra",
+      "Mudtown",
+      "<span> <span>Noxus</span></span>",
+      "Palclyff",
+      "<span> <span>Shurima</span></span>",
+      "Stonewall",
+      "<span> <span>Zaun</span></span>",
+      "Media"
+    ],
+    "champions": [
+      "皮城女警",
+      "青钢影",
+      "探险家",
+      "大发明家",
+      "未来守护者",
+      "发条魔灵",
+      "星籁歌姬",
+      "皮城执法官"
+    ],
+    "file": "factions/piltover.json"
+  },
+  "faction_shadow-isles": {
+    "name": "暗影岛",
+    "slug": "shadow-isles",
+    "total_chars": 54811,
+    "sections": [
+      "Lore",
+      "Champions of the Shadow Isles",
+      "Other Related Champions",
+      "History",
+      "Birth of the Blessed Isles",
+      "From Grief to Ruin",
+      "The Undead Rebirth",
+      "Twisted Treant",
+      "Shepherd of Lost Souls",
+      "Return of the King",
+      "Rise of the Sentinels",
+      "Locations",
+      "Black Mist",
+      "Helia",
+      "Undead Wilds",
+      "Wildlife",
+      "Arachnids",
+      "Fallen",
+      "Nightbloom",
+      "Poros",
+      "Shadow Citrus",
+      "Treants",
+      "Vilemaw",
+      "Culture",
+      "Government",
+      "Relations",
+      "<span> <span>Bilgewater</span></span>",
+      "<span> <span>Demacia</span></span>",
+      "Media"
+    ],
+    "champions": [
+      "蜘蛛女皇",
+      "灵罗娃娃",
+      "战争之影",
+      "复仇之矛",
+      "死亡颂唱者",
+      "扭曲树精",
+      "铁铠冥魂",
+      "永恒梦魇",
+      "涤魂圣枪",
+      "魂锁典狱长",
+      "愁云使者",
+      "破败之王",
+      "牧魂人"
+    ],
+    "file": "factions/shadow-isles.json"
+  },
+  "faction_shurima": {
+    "name": "恕瑞玛",
+    "slug": "shurima",
+    "total_chars": 78134,
+    "sections": [
+      "Lore",
+      "Champions of Shurima",
+      "Other Related Champions",
+      "History",
+      "Construction of the Sun Disc",
+      "A Dire Threat to Ancient Shurima",
+      "The Icathian rebellion and the Void War",
+      "Twilight of the Gods",
+      "Descent into the Tomb",
+      "Rise of the Ascended",
+      "The Sands have shifted",
+      "Bloodline",
+      "Locations",
+      "The Sun Disc",
+      "The Great Sai",
+      "North Shurima",
+      "East Shurima",
+      "South Shurima",
+      "West Shurima",
+      "Wildlife",
+      "Brackern",
+      "Dormun",
+      "Eka'Sul",
+      "Mwatis",
+      "Kmiros",
+      "Outerbeasts",
+      "Ralsiji",
+      "Shuriman Camel",
+      "Sandswimmers",
+      "Skallashi",
+      "Culture",
+      "Government",
+      "Relations",
+      "<span> <span>Ixtal</span></span>",
+      "<span> <span>Noxus</span></span>",
+      "<span> <span>Piltover</span></span>",
+      "<span> <span>Targon</span></span>",
+      "<span> <span>Zaun</span></span>",
+      "Media"
+    ],
+    "champions": [
+      "暗裔剑魔",
+      "影哨",
+      "殇之木乃伊",
+      "沙漠皇帝",
+      "魔蛇之拥",
+      "武器大师",
+      "虚空先知",
+      "",
+      "沙漠死神",
+      "披甲龙龟",
+      "荒漠屠夫",
+      "沙漠玫瑰",
+      "战争女神",
+      "水晶先锋",
+      "岩雀",
+      "远古巫灵",
+      "时光守护者"
+    ],
+    "file": "factions/shurima.json"
+  },
+  "faction_void": {
+    "name": "虚空之地",
+    "slug": "void",
+    "total_chars": 33215,
+    "sections": [
+      "Lore",
+      "Champions of the Void",
+      "Other Related Champions",
+      "History",
+      "Origins of the Watchers",
+      "Fall of the Watchers",
+      "Creation of the Voidborn",
+      "Erased from History",
+      "Fall of Icathia",
+      "Icathian Aftermath",
+      "Locations",
+      "Void Rifts",
+      "Culture",
+      "Media"
+    ],
+    "champions": [
+      "虚空恐惧",
+      "虚空之女",
+      "虚空行者",
+      "虚空掠夺者",
+      "深渊巨口",
+      "虚空遁地兽",
+      "虚空之眼"
+    ],
+    "file": "factions/void.json"
+  },
+  "faction_zaun": {
+    "name": "祖安",
+    "slug": "zaun",
+    "total_chars": 85446,
+    "sections": [
+      "Lore",
+      "Champions of Zaun",
+      "Other Related Champions",
+      "History",
+      "Foundation of Zaun",
+      "Birth of Progress Day",
+      "Explosion of the Dredge",
+      "History in Arcane",
+      "The Rise of Silco",
+      "Vi's Return",
+      "Locations",
+      "Connected Cities",
+      "Promenade Level",
+      "Entresol Level",
+      "Sump Level",
+      "Hexdraulic Conveyors",
+      "The Cliff",
+      "Oshra Va'Zaun",
+      "Zaun in Arcane",
+      "Wildlife",
+      "Culture",
+      "Government",
+      "Organizations",
+      "Academy of Techmaturgy",
+      "Chem-Jacks",
+      "Criminals",
+      "Mechanicians",
+      "Sump-Scrappers",
+      "Sumpsnipes",
+      "Relations",
+      "<span> <span>Ionia</span></span>",
+      "<span> <span>Noxus</span></span>",
+      "<span> <span>Piltover</span></span>",
+      "Media"
+    ],
+    "champions": [
+      "蒸汽机器人",
+      "祖安狂人",
+      "时间刺客",
+      "风暴之怒",
+      "暴走萝莉",
+      "炼金男爵",
+      "炼金术士",
+      "瘟疫之源",
+      "无畏战车",
+      "机械先驱",
+      "祖安怒兽",
+      "生化魔人",
+      "祖安花火",
+      "爆破鬼才"
+    ],
+    "file": "factions/zaun.json"
+  }
+}

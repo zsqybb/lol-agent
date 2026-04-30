@@ -1,13 +1,8 @@
 /**
- * LOL数据助手 - 前端交互（已全部注释，不影响后端运行）
+ * LOL数据助手 - 前端交互
  * 对接后端API，显示真实数据
  */
 
-// ==================== 所有前端浏览器代码已注释 ====================
-// 服务器环境不会执行任何 document / window 相关代码
-// 不会再报 ReferenceError: document is undefined
-
-/*
 // ==================== 图标映射 ====================
 let _iconMaps = null;
 const DDRAGON_BASE = 'https://ddragon.leagueoflegends.com/cdn';
@@ -93,8 +88,13 @@ function formatDuration(seconds) {
 }
 
 function formatDate(timestamp) {
+    if (!timestamp) return '未知时间';
     const d = new Date(timestamp);
-    return `${d.getMonth()+1}/${d.getDate()} ${d.getHours()}:${String(d.getMinutes()).padStart(2,'0')}`;
+    const month = d.getMonth() + 1;
+    const day = d.getDate();
+    const hours = d.getHours().toString().padStart(2, '0');
+    const minutes = d.getMinutes().toString().padStart(2, '0');
+    return `${month}月${day}日 ${hours}:${minutes}`;
 }
 
 // ==================== 标签切换 ====================
@@ -111,7 +111,8 @@ document.querySelectorAll('.nav-item').forEach(item => {
         'self-info': '个人信息',
         'search-player': '查询他人',
         'champion-list': '英雄图鉴',
-        'settings': '设置'
+        'settings': '设置',
+        'smart-chat': '智能问答',
     };
     document.getElementById('pageTitle').textContent = titles[tabId];
 
@@ -176,24 +177,37 @@ document.getElementById('btnLcuRead').addEventListener('click', async () => {
         const resp = await fetch('/api/lcu/current-summoner');
         const data = await resp.json();
 
-        if (data.success) {
+        if (data.success && data.summoner) {
+            const summoner = data.summoner;
             notify('读取成功！', 'success');
+
+            let rankInfo = {};
+            try {
+                const rankResp = await fetch('/api/lcu/rank');
+                const rankData = await rankResp.json();
+                if (rankData.success && rankData.rank) {
+                    rankInfo = parseLcuRank(rankData.rank);
+                }
+            } catch (e) {
+                console.warn('获取排位信息失败:', e);
+            }
+
             renderPlayerResult('selfResult', {
                 account: {
-                    puuid: data.puuid,
-                    game_name: data.name,
+                    puuid: summoner.puuid,
+                    game_name: summoner.name,
                     tag_line: ''
                 },
                 summoner: {
-                    name: data.name,
-                    summoner_level: data.level,
-                    profile_icon_id: data.profile_icon_id,
-                    profile_icon_path: data.profile_icon_path,
-                    puuid: data.puuid,
+                    name: summoner.name,
+                    summoner_level: summoner.level,
+                    profile_icon_id: summoner.profile_icon_id,
+                    profile_icon_path: summoner.profile_icon_path,
+                    puuid: summoner.puuid,
                 },
                 masteries: [],
                 matches: [],
-                rank: data.rank_data ? parseLcuRank(data.rank_data) : {},
+                rank: rankInfo,
             });
         } else {
             const errorMsg = data.error || '读取失败';
@@ -254,13 +268,14 @@ function parseLcuRank(rd) {
 
 // ==================== Riot API 查询 ====================
 
-async function searchPlayer(gameName, tagLine, platform) {
+async function searchPlayer(gameName, tagLine, platform, region = 'asia') {
     showLoading('正在查询玩家数据...');
     try {
         const params = new URLSearchParams({
             name: gameName,
-            tag: tagLine,
-            platform: platform
+            tag_line: tagLine,
+            platform: platform,
+            region: region
         });
         const resp = await fetch(`/api/player?${params}`);
         const data = await resp.json();
@@ -284,15 +299,37 @@ document.getElementById('btnSelfSearch').addEventListener('click', async () => {
     const name = document.getElementById('selfGameName').value.trim();
     const tag = document.getElementById('selfTagLine').value.trim();
     const platform = document.getElementById('selfPlatform').value;
+    const region = document.getElementById('selfRegion') ? document.getElementById('selfRegion').value : 'asia';
 
     if (!name) { notify('请输入游戏名', 'error'); return; }
 
-    const result = await searchPlayer(name, tag, platform);
+    const result = await searchPlayer(name, tag, platform, region);
     if (result) {
         if (result.players) {
             renderPlayerSearchResults('selfResult', result.players, platform);
+            document.getElementById('btnRefreshSelf').style.display = 'none';
+            document.getElementById('selfFetchTime').style.display = 'none';
         } else {
             renderPlayerResult('selfResult', result);
+            document.getElementById('btnRefreshSelf').style.display = 'inline-flex';
+            window.lastSelfSearchParams = { name, tag, platform, region };
+            if (result.fetch_time) {
+                document.getElementById('selfFetchTime').style.display = 'block';
+                document.getElementById('selfFetchTime').innerHTML = '数据获取时间: ' + result.fetch_time + ' (区域: ' + (result.fetch_region || region) + ')';
+            }
+        }
+    }
+});
+
+document.getElementById('btnRefreshSelf').addEventListener('click', async () => {
+    if (window.lastSelfSearchParams) {
+        const { name, tag, platform, region } = window.lastSelfSearchParams;
+        const result = await searchPlayer(name, tag, platform, region);
+        if (result && !result.players) {
+            renderPlayerResult('selfResult', result);
+            if (result.fetch_time) {
+                document.getElementById('selfFetchTime').innerHTML = '数据获取时间: ' + result.fetch_time + ' (区域: ' + (result.fetch_region || region) + ')';
+            }
         }
     }
 });
@@ -301,15 +338,41 @@ document.getElementById('btnSearchPlayer').addEventListener('click', async () =>
     const name = document.getElementById('searchGameName').value.trim();
     const tag = document.getElementById('searchTagLine').value.trim();
     const platform = document.getElementById('searchPlatform').value;
+    const region = document.getElementById('searchRegion').value;
 
     if (!name) { notify('请输入游戏名', 'error'); return; }
 
-    const result = await searchPlayer(name, tag, platform);
+    const result = await searchPlayer(name, tag, platform, region);
     if (result) {
+        // 保存搜索参数用于刷新
+        window.lastSearchParams = { name, tag, platform, region };
+        
         if (result.players) {
             renderPlayerSearchResults('searchResult', result.players, platform);
+            document.getElementById('btnRefreshPlayer').style.display = 'none';
+            document.getElementById('searchFetchTime').style.display = 'none';
         } else {
             renderPlayerResult('searchResult', result);
+            document.getElementById('btnRefreshPlayer').style.display = 'inline-flex';
+            // 显示获取时间
+            if (result.fetch_time) {
+                document.getElementById('searchFetchTime').style.display = 'block';
+                document.getElementById('searchFetchTime').innerHTML = `数据获取时间: ${result.fetch_time} (区域: ${result.fetch_region || region})`;
+            }
+        }
+    }
+});
+
+// 刷新按钮事件
+document.getElementById('btnRefreshPlayer').addEventListener('click', async () => {
+    if (window.lastSearchParams) {
+        const { name, tag, platform, region } = window.lastSearchParams;
+        const result = await searchPlayer(name, tag, platform, region);
+        if (result && !result.players) {
+            renderPlayerResult('searchResult', result);
+            if (result.fetch_time) {
+                document.getElementById('searchFetchTime').innerHTML = `数据获取时间: ${result.fetch_time} (区域: ${result.fetch_region || region})`;
+            }
         }
     }
 });
@@ -329,13 +392,14 @@ function renderPlayerSearchResults(containerId, players, platform) {
     html += `<div class="player-search-grid">`;
 
     for (const player of players) {
-        const account = player.account || {};
+        // 兼容两种数据结构：优化后的扁平化结构 和 旧的嵌套结构
+        const account = player.account || player;
         const summoner = player.summoner || {};
         const iconSrc = player.profile_icon_path || (summoner.profile_icon_id ? `/static/img/profileicon/${summoner.profile_icon_id}.png` : '/static/img/profileicon/29.png');
-        const name = account.game_name || summoner.name || '未知';
-        const tag = account.tag_line || '';
+        const name = account.game_name || summoner.name || player.name || '未知';
+        const tag = account.tag_line || player.tag_line || '';
         const level = summoner.summoner_level || 0;
-        const puuid = account.puuid || summoner.puuid || '';
+        const puuid = account.puuid || summoner.puuid || player.puuid || '';
 
         html += `
         <div class="player-search-card" data-puuid="${puuid}" data-tag="${tag}" data-platform="${platform}" data-name="${name}" onclick="loadPlayerByPuuid(this)">
@@ -356,10 +420,11 @@ async function loadPlayerByPuuid(el) {
     const name = el.dataset.name;
     const tag = el.dataset.tag;
     const platform = el.dataset.platform;
+    const region = document.getElementById('searchRegion') ? document.getElementById('searchRegion').value : 'asia';
 
     showLoading('正在加载玩家详细信息...');
     try {
-        const params = new URLSearchParams({ name: name, tag: tag, platform: platform });
+        const params = new URLSearchParams({ name: name, tag_line: tag, platform: platform, region: region });
         const resp = await fetch(`/api/player?${params}`);
         const data = await resp.json();
 
@@ -368,6 +433,13 @@ async function loadPlayerByPuuid(el) {
             const containerId = container ? container.id : 'searchResult';
             renderPlayerResult(containerId, data);
             notify('查询成功！', 'success');
+            
+            document.getElementById('btnRefreshPlayer').style.display = 'inline-flex';
+            window.lastSearchParams = { name, tag, platform, region };
+            if (data.fetch_time) {
+                document.getElementById('searchFetchTime').style.display = 'block';
+                document.getElementById('searchFetchTime').innerHTML = '数据获取时间: ' + data.fetch_time + ' (区域: ' + (data.fetch_region || region) + ')';
+            }
         } else {
             notify('无法获取玩家详细信息', 'error');
         }
@@ -388,6 +460,9 @@ function renderPlayerResult(containerId, data) {
     const summoner = data.summoner || {};
     const masteries = data.masteries || [];
     const matches = data.matches || [];
+
+    const currentPuuid = summoner.puuid || account.puuid || '';
+    window.currentQueryPuuid = currentPuuid;
 
     const iconSrc = summoner.profile_icon_path || '/static/img/profileicon/29.png';
     const summonerName = summoner.name || account.game_name || '未知';
@@ -459,7 +534,15 @@ function renderPlayerResult(containerId, data) {
         html += `<div class="match-list">`;
         for (const match of matches) {
             const myPuuid = summoner.puuid || account.puuid || '';
-            const me = match.participants.find(p => p.puuid === myPuuid) || match.participants[0];
+            const me = match.participants.find(p => p.puuid === myPuuid);
+            
+            if (!me) {
+                console.warn('[Match Debug] Player not found in match:', match.match_id, 'myPuuid:', myPuuid.substring(0, 15) + '...', 'participants:', match.participants.map(p => p.puuid ? p.puuid.substring(0, 15) + '...' : 'null'));
+                continue;
+            }
+            
+            console.log('[Match Debug] Match:', match.match_id, 'Player:', me.riot_id_game_name + '#' + me.riot_id_tag_line, 'Champion:', me.champion_name, 'KDA:', me.kills + '/' + me.deaths + '/' + me.assists);
+            
             const isWin = me.win;
             const kda = `${me.kills}/${me.deaths}/${me.assists}`;
             const kdaRatio = me.deaths === 0 ? (me.kills + me.assists) : ((me.kills + me.assists) / me.deaths).toFixed(1);
@@ -467,6 +550,7 @@ function renderPlayerResult(containerId, data) {
             const champName = me.champion_name_cn || me.champion_name || '未知';
             const gameMode = match.game_mode || '';
             const gameDuration = match.game_duration || 0;
+            const gameCreation = match.game_creation || 0;
 
             html += `
             <div class="match-item ${isWin ? 'win' : 'loss'}" onclick="openMatchDetail('${match.match_id}')" style="cursor:pointer">
@@ -474,6 +558,7 @@ function renderPlayerResult(containerId, data) {
                 <div class="match-info">
                     <div class="match-champ-name">${champName}</div>
                     <div class="match-mode">${gameMode} · ${formatDuration(gameDuration)}</div>
+                    <div class="match-time">${formatDate(gameCreation)}</div>
                 </div>
                 <div class="match-kda">
                     <div class="match-kda-value ${parseFloat(kdaRatio) >= 3 ? 'good' : parseFloat(kdaRatio) < 1.5 ? 'bad' : ''}">${kda}</div>
@@ -580,14 +665,16 @@ function renderTeamTable(team, teamName, isWin, teamId) {
         const items = p.items || [];
         const wardKill = p.wards_killed || 0;
         const wardPlace = p.wards_placed || 0;
+        const isCurrentPlayer = window.currentQueryPuuid && p.puuid === window.currentQueryPuuid;
+        const highlightStyle = isCurrentPlayer ? 'background:rgba(255,215,0,0.1);border-left:3px solid var(--gold);' : '';
 
-        html += `<tr class="${p.win ? 'win-row' : 'loss-row'}">
+        html += `<tr class="${p.win ? 'win-row' : 'loss-row'}" style="${highlightStyle}">
             <td>
                 <div style="display:flex;align-items:center;gap:6px">
                     <img src="${champImg}" style="width:28px;height:28px;border-radius:4px" onerror="this.src='/static/img/champion/Akali.png'">
                     <div>
-                        <div style="font-size:12px;font-weight:600">${champName}</div>
-                        <div style="font-size:10px;color:var(--text-muted)">${pName}</div>
+                        <div style="font-size:12px;font-weight:600">${champName}${isCurrentPlayer ? ' <span style="color:var(--gold);font-size:10px">&#9660; 你</span>' : ''}</div>
+                        <div style="font-size:10px;color:${isCurrentPlayer ? 'var(--gold)' : 'var(--text-muted)'}">${pName}</div>
                     </div>
                 </div>
             </td>
@@ -838,7 +925,6 @@ function renderChampionDetailContent(champ, champId, build) {
             </div>
             <div style="display:flex;gap:12px;align-items:center;margin-top:8px;flex-wrap:wrap">
                 <span class="tag-badge" style="background:var(--gold);color:#1a1a2e"><i class="fas fa-road"></i> ${rolesStr}</span>
-                <span style="color:var(--text-muted);font-size:12px">难度: <span style="color:var(--gold)">${diffStars}</span> ${diffLabel}</span>
                 ${rankNum ? `<span style="color:var(--text-muted);font-size:12px">排名 #${rankNum}</span>` : ''}
             </div>
         </div>
@@ -880,57 +966,7 @@ function renderChampionDetailContent(champ, champId, build) {
         magic: '#c764e8',
         difficulty: '#c89b3c'
     };
-    html += `
-    <div class="champ-stats-visual">
-        <div class="stat-visual-item">
-            <div class="stat-visual-icon" style="color:${statColors.attack}"><i class="fas fa-sword"></i></div>
-            <div class="stat-visual-body">
-                <div class="stat-visual-header">
-                    <span class="stat-visual-label">攻击</span>
-                    <span class="stat-visual-value" style="color:${statColors.attack}">${attackVal}</span>
-                </div>
-                <div class="stat-visual-bar">
-                    <div class="stat-visual-fill" style="width:${attackVal}%;background:${statColors.attack}"></div>
-                </div>
-            </div>
-        </div>
-        <div class="stat-visual-item">
-            <div class="stat-visual-icon" style="color:${statColors.defense}"><i class="fas fa-shield-alt"></i></div>
-            <div class="stat-visual-body">
-                <div class="stat-visual-header">
-                    <span class="stat-visual-label">防御</span>
-                    <span class="stat-visual-value" style="color:${statColors.defense}">${defenseVal}</span>
-                </div>
-                <div class="stat-visual-bar">
-                    <div class="stat-visual-fill" style="width:${defenseVal}%;background:${statColors.defense}"></div>
-                </div>
-            </div>
-        </div>
-        <div class="stat-visual-item">
-            <div class="stat-visual-icon" style="color:${statColors.magic}"><i class="fas fa-hat-wizard"></i></div>
-            <div class="stat-visual-body">
-                <div class="stat-visual-header">
-                    <span class="stat-visual-label">魔法</span>
-                    <span class="stat-visual-value" style="color:${statColors.magic}">${magicVal}</span>
-                </div>
-                <div class="stat-visual-bar">
-                    <div class="stat-visual-fill" style="width:${magicVal}%;background:${statColors.magic}"></div>
-                </div>
-            </div>
-        </div>
-        <div class="stat-visual-item">
-            <div class="stat-visual-icon" style="color:${statColors.difficulty}"><i class="fas fa-fire"></i></div>
-            <div class="stat-visual-body">
-                <div class="stat-visual-header">
-                    <span class="stat-visual-label">难度</span>
-                    <span class="stat-visual-value" style="color:${statColors.difficulty}">${diffVal}</span>
-                </div>
-                <div class="stat-visual-bar">
-                    <div class="stat-visual-fill" style="width:${diffVal}%;background:${statColors.difficulty}"></div>
-                </div>
-            </div>
-        </div>
-    </div>`;
+
 
     if (build && build.builds) {
         html += renderBuildSection(build.builds, 'buildSection');
@@ -1368,92 +1404,87 @@ checkLcuStatus();
 
 console.log('%cLOL数据助手 v2.0 已加载', 'color: #c89b3c; font-size: 16px; font-weight: bold');
 
-// ==================== 智能问答 ====================
+// ==================== 统一智能问答 ====================
 
-let chatHistory = [];
-let isChatLoading = false;
+const chatModeConfig = {
+    ai: {
+        icon: 'fa-robot',
+        title: 'AI 问答助手',
+        desc: '问什么答什么，检测到英雄/装备/故事等关键词时自动调用知识库',
+        placeholder: '随便问，检测到关键词会自动调用知识库',
+        suggestions: [
+            { query: '当前版本哪些英雄最强？推荐上分英雄', label: 'T1英雄推荐' },
+            { query: '亚索怎么出装？符文怎么带？', label: '亚索攻略详解' },
+            { query: '中单法师和刺客哪个版本更强势？', label: '中单版本分析' },
+            { query: '英雄联盟排位赛机制是怎样的？', label: '排位赛机制' },
+            { query: '德玛西亚的背景故事是什么？', label: '德玛西亚故事' },
+            { query: '你好，你是谁？', label: '打个招呼' },
+        ],
+    },
+    hero: {
+        icon: 'fa-crown',
+        title: '英雄问答',
+        desc: '查询英雄的玩法攻略、出装推荐、符文配置、技能介绍等',
+        placeholder: '输入英雄名+玩法/出装/符文，如：亚索怎么出装',
+        suggestions: [
+            { query: '亚索怎么玩？出装符文推荐', label: '亚索攻略' },
+            { query: '盖伦的技能和出装', label: '盖伦攻略' },
+            { query: '盲僧打野怎么出装？', label: '盲僧出装' },
+            { query: '当前版本T1上单英雄推荐', label: 'T1上单推荐' },
+            { query: '阿狸中单符文怎么带？', label: '阿狸符文' },
+            { query: '金克丝ADC出装推荐', label: '金克丝出装' },
+        ],
+    },
+    lore: {
+        icon: 'fa-book-open',
+        title: '故事问答',
+        desc: '探索英雄的背景故事、阵营传说、符文之地的历史',
+        placeholder: '输入英雄名+故事/背景，如：亚索的背景故事',
+        suggestions: [
+            { query: '亚索的背景故事', label: '亚索的故事' },
+            { query: '阿狸的身世来历', label: '阿狸的身世' },
+            { query: '德玛西亚的历史', label: '德玛西亚历史' },
+            { query: '诺克萨斯阵营介绍', label: '诺克萨斯介绍' },
+            { query: '艾欧尼亚的故事', label: '艾欧尼亚传说' },
+            { query: '金克丝的背景故事', label: '金克丝的故事' },
+        ],
+    },
+};
 
-document.querySelectorAll('.nav-item').forEach(item => {
-    item.addEventListener('click', function() {
-        if (this.dataset.tab === 'ai-chat') {
-            loadChatHistory();
-            updateChatChampContext();
-        }
-    });
-});
+const chatState = {
+    mode: 'ai',
+    histories: { ai: [], hero: [], lore: [] },
+    sessionIds: { ai: '', hero: '', lore: '' },
+    loading: false,
+};
 
-function updateChatChampContext() {
-    const contextEl = document.getElementById('chatChampContext');
-    const nameEl = document.getElementById('chatChampName');
-    if (!contextEl || !nameEl) return;
+function updateChatWelcome() {
+    const cfg = chatModeConfig[chatState.mode];
+    const iconEl = document.querySelector('.chat-welcome-icon');
+    const titleEl = document.getElementById('chatWelcomeTitle');
+    const descEl = document.getElementById('chatWelcomeDesc');
+    const suggestionsEl = document.getElementById('chatSuggestions');
+    const inputEl = document.getElementById('chatInput');
 
-    if (_currentChampId) {
-        const champTile = document.querySelector(`.champion-tile[data-champ-id="${_currentChampId}"]`);
-        const champName = champTile ? champTile.querySelector('.champ-name')?.textContent : _currentChampId;
-        nameEl.textContent = champName || _currentChampId;
-        contextEl.style.display = 'flex';
-    } else {
-        contextEl.style.display = 'none';
+    if (iconEl) {
+        iconEl.className = `fas ${cfg.icon} fa-2x chat-welcome-icon`;
+        const colorMap = { ai: 'var(--info)', hero: 'var(--accent)', lore: 'var(--lore-color)' };
+        iconEl.style.color = colorMap[chatState.mode];
     }
-}
+    if (titleEl) titleEl.textContent = cfg.title;
+    if (descEl) descEl.textContent = cfg.desc;
+    if (inputEl) inputEl.placeholder = cfg.placeholder;
 
-function loadChatHistory() {
-    const chatHistoryEl = document.getElementById('chatHistory');
-    if (!chatHistoryEl) return;
-
-    if (chatHistory.length === 0) {
-        chatHistoryEl.innerHTML = `
-        <div class="chat-welcome">
-            <i class="fas fa-robot fa-2x" style="color:var(--accent);margin-bottom:12px"></i>
-            <h3>LOL 智能助手</h3>
-            <p class="hint-text">基于韩服排位数据，为您提供专业的英雄联盟指导</p>
-            <div class="chat-suggestions">
-                <button class="suggestion-btn" data-query="当前版本哪些英雄最强？推荐上分英雄">当前版本T1英雄推荐</button>
-                <button class="suggestion-btn" data-query="上单什么英雄好上分？分析一下当前上单格局">上单上分攻略</button>
-                <button class="suggestion-btn" data-query="亚索怎么出装？符文怎么带？有什么对线技巧？">亚索攻略详解</button>
-                <button class="suggestion-btn" data-query="中单法师和刺客哪个版本更强势？分析一下">中单版本分析</button>
-                <button class="suggestion-btn" data-query="辅助怎么上分？硬辅和软辅哪个好？">辅助上分指南</button>
-                <button class="suggestion-btn" data-query="打野节奏怎么把控？什么时候该gank？">打野节奏教学</button>
-            </div>
-        </div>`;
-
-        chatHistoryEl.querySelectorAll('.suggestion-btn').forEach(btn => {
+    if (suggestionsEl) {
+        suggestionsEl.innerHTML = cfg.suggestions.map(s =>
+            `<button class="suggestion-btn" data-query="${s.query}">${s.label}</button>`
+        ).join('');
+        suggestionsEl.querySelectorAll('.suggestion-btn').forEach(btn => {
             btn.addEventListener('click', () => {
-                const query = btn.dataset.query;
-                document.getElementById('chatInput').value = query;
-                sendChatMessage(query);
+                sendChatMessage(btn.dataset.query);
             });
         });
-    } else {
-        renderChatHistory();
     }
-}
-
-function renderChatHistory() {
-    const chatHistoryEl = document.getElementById('chatHistory');
-    if (!chatHistoryEl) return;
-
-    let html = '';
-    chatHistory.forEach(msg => {
-        const isUser = msg.role === 'user';
-        const avatarIcon = isUser ? 'fa-user' : 'fa-robot';
-        const avatarBg = isUser ? 'var(--accent)' : 'var(--info)';
-        const avatarColor = isUser ? 'var(--bg-primary)' : '#fff';
-        const msgClass = isUser ? 'user' : 'assistant';
-
-        const content = isUser ? escapeHtml(msg.content) : formatAiReply(msg.content);
-
-        html += `
-        <div class="chat-message ${msgClass}">
-            <div class="chat-avatar" style="background:${avatarBg};color:${avatarColor}">
-                <i class="fas ${avatarIcon}"></i>
-            </div>
-            <div class="chat-bubble">${content}</div>
-        </div>`;
-    });
-
-    chatHistoryEl.innerHTML = html;
-    chatHistoryEl.scrollTop = chatHistoryEl.scrollHeight;
 }
 
 function escapeHtml(text) {
@@ -1465,33 +1496,93 @@ function escapeHtml(text) {
 function formatAiReply(text) {
     if (!text) return '';
     let html = escapeHtml(text);
-    html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-    html = html.replace(/【([^】]+)】/g, '<strong style="color:var(--accent)">【$1】</strong>');
-    html = html.replace(/^##\s+(.+)$/gm, '<div style="font-size:14px;font-weight:700;color:var(--accent);margin:10px 0 4px">$1</div>');
-    html = html.replace(/^#\s+(.+)$/gm, '<div style="font-size:15px;font-weight:700;color:var(--accent);margin:10px 0 4px">$1</div>');
-    html = html.replace(/^(\d+)[\.、]\s+(.+)$/gm, '<div style="padding-left:16px;margin:2px 0"><span style="color:var(--accent);font-weight:600">$1.</span> $2</div>');
-    html = html.replace(/^[-*]\s+(.+)$/gm, '<div style="padding-left:16px;margin:2px 0">• $2</div>');
+    html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    html = html.replace(/^(##\s+.+)$/gm, '<div style="font-size:14px;font-weight:700;color:var(--accent);margin:10px 0 4px">$1</div>');
+    html = html.replace(/^(#\s+.+)$/gm, '<div style="font-size:15px;font-weight:700;color:var(--accent);margin:10px 0 4px">$1</div>');
+    html = html.replace(/^(\d+[.]\s+.+)$/gm, '<div style="padding-left:16px;margin:2px 0"><span style="color:var(--accent);font-weight:600">$1</span></div>');
+    html = html.replace(/^([-*]\s+.+)$/gm, '<div style="padding-left:16px;margin:2px 0">• $1</div>');
     html = html.replace(/\n\n/g, '<div style="height:8px"></div>');
     html = html.replace(/\n/g, '<br>');
     return html;
 }
 
-async function sendChatMessage(message) {
-    if (!message || isChatLoading) return;
+function renderChatMessages() {
+    const el = document.getElementById('chatHistory');
+    if (!el) return;
 
-    const chatInput = document.getElementById('chatInput');
-    const chatStatus = document.getElementById('chatStatus');
+    const history = chatState.histories[chatState.mode] || [];
 
-    if (chatInput) chatInput.value = '';
-
-    chatHistory.push({ role: 'user', content: message });
-    renderChatHistory();
-
-    isChatLoading = true;
-    if (chatStatus) {
-        chatStatus.textContent = '正在思考中...';
-        chatStatus.className = 'chat-status loading';
+    if (history.length === 0) {
+        const welcomeEl = document.getElementById('chatWelcome');
+        if (welcomeEl) welcomeEl.style.display = '';
+        el.querySelectorAll('.chat-message').forEach(m => m.remove());
+        return;
     }
+
+    const welcomeEl = document.getElementById('chatWelcome');
+    if (welcomeEl) welcomeEl.style.display = 'none';
+
+    let html = '';
+    history.forEach(msg => {
+        const isUser = msg.role === 'user';
+        const avatarIcon = isUser ? 'fa-user' : 'fa-robot';
+        const avatarBg = isUser ? 'var(--accent)' : 'var(--info)';
+        const avatarColor = isUser ? 'var(--bg-primary)' : '#fff';
+        const msgClass = isUser ? 'user' : 'assistant';
+        const content = isUser ? escapeHtml(msg.content) : formatAiReply(msg.content);
+        const timeStr = msg.time ? `<span style="display:block;font-size:10px;color:var(--text-muted);margin-top:4px;text-align:right">${msg.time}</span>` : '';
+        html += `
+        <div class="chat-message ${msgClass}">
+            <div class="chat-avatar" style="background:${avatarBg};color:${avatarColor}">
+                <i class="fas ${avatarIcon}"></i>
+            </div>
+            <div class="chat-bubble">${content}${timeStr}</div>
+        </div>`;
+    });
+
+    el.querySelectorAll('.chat-message').forEach(m => m.remove());
+    el.insertAdjacentHTML('beforeend', html);
+    el.scrollTop = el.scrollHeight;
+}
+
+async function ensureSessionId() {
+    const mode = chatState.mode;
+    if (chatState.sessionIds[mode]) return chatState.sessionIds[mode];
+    try {
+        const resp = await fetch('/api/chat/session', { method: 'POST' });
+        const data = await resp.json();
+        if (data.success) {
+            chatState.sessionIds[mode] = data.session_id;
+            return chatState.sessionIds[mode];
+        }
+    } catch (e) {
+        console.error('创建会话失败:', e);
+    }
+    chatState.sessionIds[mode] = Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+    return chatState.sessionIds[mode];
+}
+
+async function sendChatMessage(message) {
+    if (!message || chatState.loading) return;
+
+    const inputEl = document.getElementById('chatInput');
+    const statusEl = document.getElementById('chatStatus');
+    const mode = chatState.mode;
+
+    if (inputEl) inputEl.value = '';
+
+    const now = new Date();
+    const timeStr = `${now.getHours().toString().padStart(2,'0')}:${now.getMinutes().toString().padStart(2,'0')}`;
+
+    chatState.histories[mode].push({ role: 'user', content: message, time: timeStr });
+    renderChatMessages();
+
+    chatState.loading = true;
+    if (statusEl) {
+        statusEl.innerHTML = '<div class="chat-typing"><div class="chat-typing-dot"></div><div class="chat-typing-dot"></div><div class="chat-typing-dot"></div></div> <span style="color:var(--info)">正在思考中...</span>';
+    }
+
+    const sessionId = await ensureSessionId();
 
     try {
         const resp = await fetch('/api/ai-chat', {
@@ -1499,66 +1590,119 @@ async function sendChatMessage(message) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 message: message,
-                history: chatHistory.slice(0, -1),
-                champ_id: _currentChampId || ''
+                history: chatState.histories[mode].slice(0, -1),
+                mode: mode,
+                champ_id: _currentChampId || '',
+                session_id: sessionId,
             })
         });
 
         const data = await resp.json();
 
         if (data.success) {
-            chatHistory.push({ role: 'assistant', content: data.reply });
-            renderChatHistory();
+            const replyTime = new Date();
+            const replyTimeStr = `${replyTime.getHours().toString().padStart(2,'0')}:${replyTime.getMinutes().toString().padStart(2,'0')}`;
+            chatState.histories[mode].push({ role: 'assistant', content: data.reply, time: replyTimeStr });
+            renderChatMessages();
 
-            if (chatStatus) {
-                chatStatus.textContent = '回答完成';
-                chatStatus.className = 'chat-status success';
-                setTimeout(() => { chatStatus.className = 'chat-status'; }, 3000);
+            if (statusEl) {
+                statusEl.innerHTML = '<span style="color:var(--win)">✓ 回答完成</span> <span class="chat-hint">按 Enter 发送</span>';
+                setTimeout(() => {
+                    statusEl.innerHTML = '<span class="chat-hint">按 Enter 发送</span>';
+                }, 3000);
             }
         } else {
             throw new Error(data.error || '请求失败');
         }
     } catch (e) {
         console.error('聊天请求失败:', e);
-        if (chatStatus) {
-            chatStatus.textContent = `错误: ${e.message}`;
-            chatStatus.className = 'chat-status error';
+        if (statusEl) {
+            statusEl.innerHTML = `<span style="color:var(--loss)">✗ ${e.message}</span>`;
         }
-
-        chatHistory.pop();
-        renderChatHistory();
+        chatState.histories[mode].pop();
+        renderChatMessages();
     } finally {
-        isChatLoading = false;
+        chatState.loading = false;
     }
 }
 
-document.getElementById('btnSendChat')?.addEventListener('click', () => {
-    const chatInput = document.getElementById('chatInput');
-    if (chatInput && chatInput.value.trim()) {
-        sendChatMessage(chatInput.value.trim());
-    }
-});
+function initUnifiedChat() {
+    const inputEl = document.getElementById('chatInput');
+    const sendBtn = document.getElementById('btnSendChat');
+    const clearBtn = document.getElementById('btnClearChat');
 
-document.getElementById('chatInput')?.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-        e.preventDefault();
-        const chatInput = document.getElementById('chatInput');
-        if (chatInput && chatInput.value.trim()) {
-            sendChatMessage(chatInput.value.trim());
-        }
+    if (sendBtn) {
+        sendBtn.addEventListener('click', () => {
+            if (inputEl && inputEl.value.trim()) {
+                sendChatMessage(inputEl.value.trim());
+            }
+        });
     }
-});
 
-document.getElementById('btnClearChat')?.addEventListener('click', () => {
-    chatHistory = [];
-    loadChatHistory();
-    const chatStatus = document.getElementById('chatStatus');
-    if (chatStatus) {
-        chatStatus.textContent = '对话已清空';
-        chatStatus.className = 'chat-status success';
-        setTimeout(() => { chatStatus.className = 'chat-status'; }, 3000);
+    if (inputEl) {
+        inputEl.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                if (inputEl.value.trim()) {
+                    sendChatMessage(inputEl.value.trim());
+                }
+            }
+        });
     }
-});
+
+    if (clearBtn) {
+        clearBtn.addEventListener('click', async () => {
+            const mode = chatState.mode;
+            const sid = chatState.sessionIds[mode];
+            if (sid) {
+                try {
+                    await fetch('/api/chat/clear', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ session_id: sid, mode: mode })
+                    });
+                } catch (e) {
+                    console.error('清除记忆失败:', e);
+                }
+            }
+            chatState.histories[mode] = [];
+            chatState.sessionIds[mode] = '';
+            updateChatWelcome();
+            renderChatMessages();
+            const statusEl = document.getElementById('chatStatus');
+            if (statusEl) {
+                statusEl.innerHTML = '<span style="color:var(--win)">✓ 对话已清空</span> <span class="chat-hint">按 Enter 发送</span>';
+                setTimeout(() => {
+                    statusEl.innerHTML = '<span class="chat-hint">按 Enter 发送</span>';
+                }, 3000);
+            }
+        });
+    }
+
+    document.querySelectorAll('.chat-mode-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            const newMode = tab.dataset.mode;
+            if (newMode === chatState.mode) return;
+
+            document.querySelectorAll('.chat-mode-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+
+            chatState.mode = newMode;
+            updateChatWelcome();
+            renderChatMessages();
+
+            const inputEl = document.getElementById('chatInput');
+            if (inputEl) {
+                inputEl.placeholder = chatModeConfig[newMode].placeholder;
+                inputEl.focus();
+            }
+        });
+    });
+
+    updateChatWelcome();
+}
+
+initUnifiedChat();
 
 document.getElementById('btnSaveApiConfig')?.addEventListener('click', async () => {
     const aiApiKey = document.getElementById('aiApiKey')?.value || '';
@@ -1638,28 +1782,3 @@ if (aiApiType) {
         xinghuoConfig.style.display = aiApiType.value === 'xinghuo' ? 'block' : 'none';
     }
 }
-
-*/
-
-// 后端服务代码（保留，用于 Railway 启动服务）
-const express = require('express');
-const path = require('path');
-const app = express();
-
-// 静态文件服务
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.json());
-
-// 前端页面入口
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
-// API 路由（你的后端接口）
-app.use('/api', require('./routes/api'));
-
-// 启动服务
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
