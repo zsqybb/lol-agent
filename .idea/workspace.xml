@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6dc6f64c-6aad-4035-8fa5-b998d872e1aa" name="更改" comment="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;app.js" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;zsqybb&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "git@github.com:zsqybb/zsqybb.git",
+    "accountId": "3ceff46a-0ff8-4450-bfdd-35f311a8669b"
+  }
+}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="3Cy7QhEhlvqSV4MHr1J2cGmfiR9" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.riot_api_client.executor&quot;: &quot;Run&quot;,
+    &quot;Python.scrape_rankings_v3.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/code-tengxun&quot;
+  }
+}</component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-f78a9d071105-aa17d162503b-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-243.26574.90" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="6dc6f64c-6aad-4035-8fa5-b998d872e1aa" name="更改" comment="" />
+      <created>1777345942366</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1777345942366</updated>
+    </task>
+    <task id="LOCAL-00001" summary="akl">
+      <option name="closed" value="true" />
+      <created>1777422358834</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1777422358834</updated>
+    </task>
+    <task id="LOCAL-00002" summary="akl">
+      <option name="closed" value="true" />
+      <created>1777422671825</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1777422671825</updated>
+    </task>
+    <task id="LOCAL-00003" summary="akl">
+      <option name="closed" value="true" />
+      <created>1777508766545</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1777508766545</updated>
+    </task>
+    <task id="LOCAL-00004" summary="akl">
+      <option name="closed" value="true" />
+      <created>1777508838818</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1777508838818</updated>
+    </task>
+    <task id="LOCAL-00005" summary="akl">
+      <option name="closed" value="true" />
+      <created>1777508850846</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1777508850846</updated>
+    </task>
+    <task id="LOCAL-00006" summary="akl">
+      <option name="closed" value="true" />
+      <created>1777508873437</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1777508873437</updated>
+    </task>
+    <task id="LOCAL-00007" summary="akl">
+      <option name="closed" value="true" />
+      <created>1777508890977</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1777508890977</updated>
+    </task>
+    <task id="LOCAL-00008" summary="akl">
+      <option name="closed" value="true" />
+      <created>1777508916751</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1777508916751</updated>
+    </task>
+    <task id="LOCAL-00009" summary="akl">
+      <option name="closed" value="true" />
+      <created>1777508938165</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1777508938165</updated>
+    </task>
+    <task id="LOCAL-00010" summary="akl">
+      <option name="closed" value="true" />
+      <created>1777509586643</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1777509586643</updated>
+    </task>
+    <task id="LOCAL-00011" summary="akl">
+      <option name="closed" value="true" />
+      <created>1777510259377</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1777510259377</updated>
+    </task>
+    <task id="LOCAL-00012" summary="akl">
+      <option name="closed" value="true" />
+      <created>1777511079172</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1777511079172</updated>
+    </task>
+    <task id="LOCAL-00013" summary="akl">
+      <option name="closed" value="true" />
+      <created>1777512044333</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1777512044333</updated>
+    </task>
+    <task id="LOCAL-00014" summary="akl">
+      <option name="closed" value="true" />
+      <created>1777513004529</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1777513004529</updated>
+    </task>
+    <task id="LOCAL-00015" summary="akl">
+      <option name="closed" value="true" />
+      <created>1777513014728</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1777513014728</updated>
+    </task>
+    <task id="LOCAL-00016" summary="akl">
+      <option name="closed" value="true" />
+      <created>1777513047579</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1777513047579</updated>
+    </task>
+    <task id="LOCAL-00017" summary="akl">
+      <option name="closed" value="true" />
+      <created>1777513181366</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1777513181366</updated>
+    </task>
+    <task id="LOCAL-00018" summary="akl">
+      <option name="closed" value="true" />
+      <created>1778249534023</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1778249534025</updated>
+    </task>
+    <task id="LOCAL-00019" summary="akl">
+      <option name="closed" value="true" />
+      <created>1778249545970</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1778249545970</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;app.js">
+      <option name="closed" value="true" />
+      <created>1778249587326</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1778249587326</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;app.js">
+      <option name="closed" value="true" />
+      <created>1778249967679</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1778249967679</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;app.js">
+      <option name="closed" value="true" />
+      <created>1778250352348</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1778250352348</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="akl" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;app.js" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;app.js" />
+  </component>
+</project>
