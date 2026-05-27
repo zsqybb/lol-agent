@@ -2,7 +2,7 @@
 对话记忆管理模块
 - 每次新对话创建一个记忆文件
 - 回答时读取记忆提供上下文
-- 每5轮对话自动总结压缩
+- 每5轮对话自动总结压缩（后台线程，不阻塞响应）
 - 对话结束时删除记忆文件
 """
 import os
@@ -10,6 +10,7 @@ import json
 import time
 import uuid
 import logging
+import threading
 from spark_client import call_spark_api
 
 logger = logging.getLogger(__name__)
@@ -41,19 +42,22 @@ class ChatMemory:
         self.last_champ_name = ''
         self.summary = ''
         self.recent_messages = []
+        self._lock = threading.Lock()
+        self._summarizing = False
         self._load()
 
     def _save(self):
-        data = {
-            'session_id': self.session_id,
-            'mode': self.mode,
-            'round_count': self.round_count,
-            'last_champ_id': self.last_champ_id,
-            'last_champ_name': self.last_champ_name,
-            'summary': self.summary,
-            'recent_messages': self.recent_messages[-10:],
-            'updated_at': time.time(),
-        }
+        with self._lock:
+            data = {
+                'session_id': self.session_id,
+                'mode': self.mode,
+                'round_count': self.round_count,
+                'last_champ_id': self.last_champ_id,
+                'last_champ_name': self.last_champ_name,
+                'summary': self.summary,
+                'recent_messages': self.recent_messages[-10:],
+                'updated_at': time.time(),
+            }
         try:
             with open(self.filepath, 'w', encoding='utf-8') as f:
                 json.dump(data, f, ensure_ascii=False, indent=2)
@@ -89,37 +93,53 @@ class ChatMemory:
         self.recent_messages = self.recent_messages[-10:]
 
         if self.round_count > 0 and self.round_count % 5 == 0:
-            self._summarize()
+            self._summarize_async()
 
         self._save()
 
-    def _summarize(self):
-        content_parts = []
-        if self.summary:
-            content_parts.append(f"[历史总结] {self.summary}")
-
-        for msg in self.recent_messages:
-            content_parts.append(f"第{msg['round']}轮 - 用户: {msg['user']}")
-            content_parts.append(f"第{msg['round']}轮 - 助手: {msg['assistant']}")
-
-        full_content = '\n'.join(content_parts)
-        if len(full_content) < 50:
+    def _summarize_async(self):
+        """后台线程执行总结，不阻塞请求响应"""
+        if self._summarizing:
             return
+        self._summarizing = True
+        t = threading.Thread(target=self._summarize, daemon=True)
+        t.start()
 
-        messages = [
-            {"role": "system", "content": "你是一个对话总结助手，专门总结英雄联盟游戏相关的对话。请提取关键信息，保留英雄名、查询内容、核心结论，去除冗余。"},
-            {"role": "user", "content": SUMMARY_PROMPT.format(content=full_content)}
-        ]
+    def _summarize(self):
+        try:
+            content_parts = []
+            if self.summary:
+                content_parts.append(f"[历史总结] {self.summary}")
 
-        summary_result = call_spark_api(messages, timeout=60)
-        if summary_result:
-            self.summary = summary_result
-            self.recent_messages = self.recent_messages[-3:]
-            logger.info(f"会话{self.session_id}记忆已压缩，第{self.round_count}轮")
-        else:
-            if len(self.recent_messages) > 5:
-                self.recent_messages = self.recent_messages[-3:]
-            self.summary = self._manual_summarize(full_content)
+            with self._lock:
+                msgs_snapshot = list(self.recent_messages)
+
+            for msg in msgs_snapshot:
+                content_parts.append(f"第{msg['round']}轮 - 用户: {msg['user']}")
+                content_parts.append(f"第{msg['round']}轮 - 助手: {msg['assistant']}")
+
+            full_content = '\n'.join(content_parts)
+            if len(full_content) < 50:
+                return
+
+            messages = [
+                {"role": "system", "content": "你是一个对话总结助手，专门总结英雄联盟游戏相关的对话。请提取关键信息，保留英雄名、查询内容、核心结论，去除冗余。"},
+                {"role": "user", "content": SUMMARY_PROMPT.format(content=full_content)}
+            ]
+
+            summary_result = call_spark_api(messages, timeout=60)
+            with self._lock:
+                if summary_result:
+                    self.summary = summary_result
+                    self.recent_messages = self.recent_messages[-3:]
+                    logger.info(f"会话{self.session_id}记忆已压缩，第{self.round_count}轮")
+                else:
+                    if len(self.recent_messages) > 5:
+                        self.recent_messages = self.recent_messages[-3:]
+                    self.summary = self._manual_summarize(full_content)
+        finally:
+            self._summarizing = False
+            self._save()
 
     def _manual_summarize(self, content: str) -> str:
         lines = content.split('\n')

@@ -10,11 +10,15 @@ __pycache__/
 # IDE
 .idea/
 
+# 备份文件
+*.bak
+
 # 对话记忆临时文件
 chat_memory/*.json
 
-# 生成的文档
+# 生成的文档文件
 *.docx
+*.pdf
 ~$*.docx
 
 # 系统文件
