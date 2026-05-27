@@ -1,12 +1,13 @@
 """
 LCU连接模块 - 从本地LOL客户端读取数据
 通过psutil查找进程命令行获取LCU的端口和认证令牌
-支持国服和外服
+支持国服和外服，自动重试和多种发现策略
 """
 import os
 import requests
 import logging
 import urllib3
+import time
 
 logger = logging.getLogger(__name__)
 
@@ -17,6 +18,8 @@ _lcu_port = None
 _lcu_token = None
 _lcu_connected = False
 _lcu_base_url = None
+_last_connect_attempt = 0
+_connect_retry_interval = 5  # 最小重试间隔（秒）
 
 
 def _find_lcu_process():
@@ -113,11 +116,127 @@ def _find_lcu_wmic():
 
 
 def _find_lockfile():
-    """通过lockfile查找LCU连接信息"""
-    lockfile_paths = []
+    """通过lockfile查找LCU连接信息（在所有可能路径中搜索）"""
+    for base_dir in _get_lockfile_search_dirs():
+        path = os.path.join(base_dir, 'lockfile')
+        if os.path.exists(path):
+            try:
+                with open(path, 'r', encoding='utf-8', errors='ignore') as f:
+                    content = f.read().strip()
+                # lockfile格式: LeagueClient:PID:PORT:TOKEN:PROTOCOL
+                parts = content.split(':')
+                if len(parts) >= 4:
+                    port = parts[2]
+                    token = parts[3]
+                    if port and token and port.isdigit():
+                        logger.info(f"Found LCU via lockfile: {path}")
+                        return {'port': port, 'token': token}
+            except Exception as e:
+                logger.debug(f"Failed to read lockfile {path}: {e}")
+    return None
 
-    # 国服常见路径
-    for drive in ['C:', 'D:', 'E:', 'F:']:
+
+def find_lcu():
+    """
+    查找LCU进程，获取端口和认证令牌
+    自动尝试多种策略：缓存连接 -> psutil进程扫描 -> lockfile -> 端口扫描
+    返回: {"success": bool, "port": str, "token": str, "method": str}
+    """
+    global _lcu_port, _lcu_token, _lcu_connected, _last_connect_attempt
+
+    now = time.time()
+    if now - _last_connect_attempt < _connect_retry_interval:
+        if _lcu_connected:
+            return {"success": True, "port": _lcu_port, "token": _lcu_token, "method": "cached"}
+    _last_connect_attempt = now
+
+    # 策略1: 测试缓存连接
+    if _lcu_connected and _lcu_port and _lcu_token:
+        if _test_connection(_lcu_port, _lcu_token):
+            return {"success": True, "port": _lcu_port, "token": _lcu_token, "method": "cached"}
+        _lcu_connected = False
+        _lcu_port = None
+        _lcu_token = None
+
+    # 策略2: psutil 进程扫描
+    result = _find_lcu_process()
+    if result and _test_connection(result['port'], result['token']):
+        _lcu_port = result['port']
+        _lcu_token = result['token']
+        _lcu_connected = True
+        logger.info(f"LCU connected via psutil: port={_lcu_port}")
+        return {"success": True, "port": _lcu_port, "token": _lcu_token, "method": "psutil"}
+
+    # 策略3: lockfile 扫描（多路径）
+    result = _find_lockfile()
+    if result and _test_connection(result['port'], result['token']):
+        _lcu_port = result['port']
+        _lcu_token = result['token']
+        _lcu_connected = True
+        logger.info(f"LCU connected via lockfile: port={_lcu_port}")
+        return {"success": True, "port": _lcu_port, "token": _lcu_token, "method": "lockfile"}
+
+    # 策略4: 端口范围扫描（国服常用端口范围）
+    result = _scan_lcu_ports()
+    if result and _test_connection(result['port'], result['token']):
+        _lcu_port = result['port']
+        _lcu_token = result['token']
+        _lcu_connected = True
+        logger.info(f"LCU connected via port scan: port={_lcu_port}")
+        return {"success": True, "port": _lcu_port, "token": _lcu_token, "method": "port_scan"}
+
+    return {"success": False, "error": "未找到LOL客户端。请确认：\n1. 英雄联盟客户端已启动并登录\n2. 客户端正在运行中（不是后台）\n3. 尝试重启客户端后重试"}
+
+
+def _test_connection(port, token):
+    """快速测试LCU连接是否可用"""
+    try:
+        resp = requests.get(
+            f"https://127.0.0.1:{port}/lol-summoner/v1/current-summoner",
+            auth=("riot", token),
+            timeout=3,
+            verify=False
+        )
+        return resp.status_code == 200
+    except Exception:
+        return False
+
+
+def _scan_lcu_ports():
+    """扫描常用LCU端口范围（国服通常在 10000-60000 随机）"""
+    # 先尝试从lockfile目录找到端口范围
+    import glob as _glob
+    lockfile_dirs = _get_lockfile_search_dirs()
+    for base in lockfile_dirs:
+        for pattern in [os.path.join(base, 'lockfile'), os.path.join(base, '..', 'lockfile')]:
+            try:
+                path = os.path.normpath(pattern)
+                if os.path.exists(path):
+                    with open(path, 'r') as f:
+                        content = f.read().strip()
+                    parts = content.split(':')
+                    if len(parts) >= 4:
+                        port = parts[2]
+                        token = parts[3]
+                        if port and token:
+                            return {'port': port, 'token': token}
+            except Exception:
+                continue
+    return None
+
+
+def _get_lockfile_search_dirs():
+    """获取所有可能的lockfile搜索目录"""
+    dirs = []
+    # 用户AppData
+    for sub in ['Local', 'Roaming', 'LocalLow']:
+        appdata = os.path.join(os.path.expanduser('~'), 'AppData', sub)
+        dirs.append(os.path.join(appdata, 'Riot Games', 'League of Legends'))
+        dirs.append(os.path.join(appdata, 'League of Legends'))
+    # ProgramData
+    dirs.append(os.path.join(os.environ.get('ProgramData', 'C:\\ProgramData'), 'Riot Games', 'League of Legends'))
+    # 安装目录
+    for drive in ['C:', 'D:', 'E:', 'F:', 'G:']:
         for folder in [
             r'Riot Games\League of Legends',
             r'Program Files\Riot Games\League of Legends',
@@ -125,79 +244,10 @@ def _find_lockfile():
             r'Games\League of Legends',
             r'腾讯游戏\英雄联盟',
             r'Tencent Games\League of Legends',
+            r'WeGameApps\英雄联盟',
         ]:
-            lockfile_paths.append(os.path.join(drive + '\\', folder, 'lockfile'))
-
-    # 用户目录
-    appdata = os.path.expanduser('~\\AppData\\Local')
-    programdata = os.path.expanduser('~\\AppData\\Roaming')
-    lockfile_paths.append(os.path.join(appdata, 'Riot Games', 'League of Legends', 'lockfile'))
-    lockfile_paths.append(os.path.join(programdata, 'Riot Games', 'League of Legends', 'lockfile'))
-    lockfile_paths.append(os.path.join(appdata, 'League of Legends', 'lockfile'))
-
-    for path in lockfile_paths:
-        if os.path.exists(path):
-            try:
-                with open(path, 'r') as f:
-                    content = f.read().strip()
-                # lockfile格式: LeagueClient:PID:PORT:TOKEN
-                parts = content.split(':')
-                if len(parts) >= 4:
-                    port = parts[2]
-                    token = parts[3]
-                    if port and token:
-                        logger.info(f"Found LCU via lockfile: {path}")
-                        return {'port': port, 'token': token}
-            except Exception as e:
-                logger.debug(f"Failed to read lockfile {path}: {e}")
-
-    return None
-
-
-def find_lcu():
-    """
-    查找LCU进程，获取端口和认证令牌
-    返回: {"success": bool, "port": str, "token": str}
-    """
-    global _lcu_port, _lcu_token, _lcu_connected
-
-    # 如果已连接，先测试连接是否还活着
-    if _lcu_connected and _lcu_port and _lcu_token:
-        try:
-            resp = requests.get(
-                f"https://127.0.0.1:{_lcu_port}/lol-summoner/v1/current-summoner",
-                auth=("riot", _lcu_token),
-                timeout=3,
-                verify=False
-            )
-            if resp.status_code == 200:
-                return {"success": True, "port": _lcu_port, "token": _lcu_token}
-        except Exception:
-            pass
-        # 连接已断开，重置
-        _lcu_connected = False
-        _lcu_port = None
-        _lcu_token = None
-
-    # 方法1: 通过进程查找（psutil）
-    result = _find_lcu_process()
-    if result:
-        _lcu_port = result['port']
-        _lcu_token = result['token']
-        _lcu_connected = True
-        logger.info(f"LCU connected: port={_lcu_port}")
-        return {"success": True, "port": _lcu_port, "token": _lcu_token}
-
-    # 方法2: 通过lockfile查找
-    result = _find_lockfile()
-    if result:
-        _lcu_port = result['port']
-        _lcu_token = result['token']
-        _lcu_connected = True
-        logger.info(f"LCU connected via lockfile: port={_lcu_port}")
-        return {"success": True, "port": _lcu_port, "token": _lcu_token}
-
-    return {"success": False, "error": "未找到LOL客户端，请先启动英雄联盟"}
+            dirs.append(os.path.join(drive + '\\', folder))
+    return dirs
 
 
 def is_connected():
@@ -339,9 +389,24 @@ def get_game_session():
 
 
 def get_lcu_status():
-    """获取LCU连接状态"""
-    return {
+    """获取LCU连接状态（含诊断信息）"""
+    status = {
         "connected": _lcu_connected,
         "port": _lcu_port,
         "has_token": _lcu_token is not None,
+        "last_attempt": _last_connect_attempt,
     }
+    if _lcu_connected and _lcu_port:
+        status["health"] = "ok" if _test_connection(_lcu_port, _lcu_token) else "stale"
+    return status
+
+
+def force_reconnect():
+    """强制重新扫描LCU连接（清除缓存状态）"""
+    global _lcu_connected, _lcu_port, _lcu_token, _last_connect_attempt
+    _lcu_connected = False
+    _lcu_port = None
+    _lcu_token = None
+    _last_connect_attempt = 0
+    logger.info("Force reconnecting LCU...")
+    return find_lcu()

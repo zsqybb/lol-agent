@@ -1,0 +1,50 @@
+{
+  "version": "16.10.1",
+  "id": "KSante",
+  "key": "897",
+  "name": "纳祖芒荣耀",
+  "title": "奎桑提",
+  "blurb": "威武不屈的奎桑提，与山峦般的巨兽和残忍的飞升者不懈地战斗，只为保护自己的家园纳祖芒——恕瑞玛沙漠中一处明珠般的绿洲。但自从与曾经的伙伴分别，奎桑提意识到他要是渴望成为一名足够领导纳祖芒的英雄，就必须克服自己一心求胜的固执。只有这样，他才不会被自己的傲慢所吞噬，最终收获他所需的智慧，击溃那些足以威胁族人的恐怖对手。",
+  "info": {
+    "attack": 8,
+    "defense": 8,
+    "magic": 7,
+    "difficulty": 9
+  },
+  "image": {
+    "full": "KSante.png",
+    "sprite": "champion2.png",
+    "group": "champion",
+    "x": 384,
+    "y": 0,
+    "w": 48,
+    "h": 48
+  },
+  "tags": [
+    "Tank",
+    "Fighter"
+  ],
+  "partype": "法力",
+  "stats": {
+    "hp": 625,
+    "hpperlevel": 120,
+    "mp": 320,
+    "mpperlevel": 60,
+    "movespeed": 330,
+    "armor": 36,
+    "armorperlevel": 5.2,
+    "spellblock": 30,
+    "spellblockperlevel": 2.1,
+    "attackrange": 150,
+    "hpregen": 9.5,
+    "hpregenperlevel": 1,
+    "mpregen": 7,
+    "mpregenperlevel": 1,
+    "crit": 0,
+    "critperlevel": 0,
+    "attackdamage": 64,
+    "attackdamageperlevel": 0,
+    "attackspeedperlevel": 2.5,
+    "attackspeed": 0.688
+  }
+}

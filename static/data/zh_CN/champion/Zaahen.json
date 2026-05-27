@@ -1,0 +1,50 @@
+{
+  "version": "16.10.1",
+  "id": "Zaahen",
+  "key": "904",
+  "name": "不落魔锋",
+  "title": "亚恒",
+  "blurb": "亚恒是陨落的神，是圣洁与污秽的化身。身为暗裔，亚恒既要猎杀他的暗裔同胞，亦要抵挡那股随时可能将他吞噬的堕落之力。为了阻止疯狂降临，他曾自愿被封印进他的长刀；而如今，他再度行走于世间，怀着一颗崇高的心，和野兽般的本性。在亚恒的内心，一场永恒的战争从未停止——但只要他尚未落败，那些染指符文之地的奸邪就注定遭他斩灭。",
+  "info": {
+    "attack": 8,
+    "defense": 6,
+    "magic": 1,
+    "difficulty": 2
+  },
+  "image": {
+    "full": "Zaahen.png",
+    "sprite": "champion5.png",
+    "group": "champion",
+    "x": 192,
+    "y": 48,
+    "w": 48,
+    "h": 48
+  },
+  "tags": [
+    "Fighter",
+    "Assassin"
+  ],
+  "partype": "法力",
+  "stats": {
+    "hp": 640,
+    "hpperlevel": 114,
+    "mp": 350,
+    "mpperlevel": 55,
+    "movespeed": 345,
+    "armor": 36,
+    "armorperlevel": 5,
+    "spellblock": 32,
+    "spellblockperlevel": 2.05,
+    "attackrange": 175,
+    "hpregen": 7.5,
+    "hpregenperlevel": 0.8,
+    "mpregen": 8.15,
+    "mpregenperlevel": 0.75,
+    "crit": 0,
+    "critperlevel": 0,
+    "attackdamage": 63,
+    "attackdamageperlevel": 0,
+    "attackspeedperlevel": 2.5,
+    "attackspeed": 0.625
+  }
+}

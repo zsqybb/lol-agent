@@ -5,8 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LOL 数据助手 - 国服版</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 替代 Google Fonts，国内加载快 */
+        @font-face {
+            font-family: 'Noto Sans SC';
+            src: local('Noto Sans SC'), local('Microsoft YaHei'), local('PingFang SC'), local('SimHei');
+        }
+    </style>
 </head>
 <body>
     <!-- 侧边栏 -->
@@ -35,6 +41,10 @@
             </li>
             <div class="nav-divider"></div>
             <div class="nav-group-label">智能助手</div>
+            <li class="nav-item" data-tab="game-assist">
+                <i class="fas fa-gamepad"></i>
+                <span>游戏助手</span>
+            </li>
             <li class="nav-item" data-tab="smart-chat">
                 <i class="fas fa-comments"></i>
                 <span>智能问答</span>
@@ -51,6 +61,15 @@
             <div class="lcu-status" id="lcuStatus">
                 <span class="status-dot offline"></span>
                 <span>客户端未连接</span>
+            </div>
+            <div class="sidebar-version" id="sidebarVersion">v2.1</div>
+            <div style="margin-top:8px;display:flex;gap:4px">
+                <button class="btn btn-sm" style="font-size:10px;padding:3px 8px" onclick="window.open('/static/overlay.html','lol_overlay','width=750,height=420,top=10,left=300')" title="游戏内叠加层">
+                    <i class="fas fa-layer-group"></i> 叠加层
+                </button>
+                <button class="btn btn-sm" style="font-size:10px;padding:3px 8px" onclick="window.open('/static/cd-timer.html','lol_cdtimer','width=230,height=420,top=100,left=100')" title="技能冷却计时器">
+                    <i class="fas fa-clock"></i> CD计时
+                </button>
             </div>
         </div>
     </nav>
@@ -191,6 +210,12 @@
             <div class="card">
                 <div class="card-header">
                     <h3><i class="fas fa-crown"></i> 英雄图鉴</h3>
+                    <div class="card-actions" style="display:flex;align-items:center;gap:8px">
+                        <span id="dataFreshness" class="data-freshness" title="数据更新时间"></span>
+                        <button class="btn btn-sm btn-outline" id="btnRefreshData" title="从Riot Data Dragon和OP.GG获取最新数据">
+                            <i class="fas fa-sync-alt"></i> 刷新数据
+                        </button>
+                    </div>
                     <div class="filter-row">
                         <div class="filter-group">
                             <button class="btn-filter active" data-role="ALL">全部</button>
@@ -260,6 +285,7 @@
                         <button class="btn btn-outline" id="btnTestApi">
                             <i class="fas fa-vial"></i> 测试API
                         </button>
+                        <div id="apiKeyExpiryIndicator" style="margin-top:8px"></div>
                         <div id="apiTestResult" class="hint-text"></div>
                     </div>
                 </div>
@@ -275,15 +301,15 @@
                         </p>
                         <div class="input-group">
                             <label>APPID</label>
-                            <input type="text" id="xinghuoAppId" class="input-field" placeholder="b3105b92">
+                            <input type="text" id="xinghuoAppId" class="input-field" placeholder="请输入APPID">
                         </div>
                         <div class="input-group">
                             <label>APIKey</label>
-                            <input type="text" id="aiApiKey" class="input-field" placeholder="09ed8f5ee8ab99d26e36841fc8872606">
+                            <input type="text" id="aiApiKey" class="input-field" placeholder="请输入APIKey">
                         </div>
                         <div class="input-group">
                             <label>APISecret</label>
-                            <input type="text" id="xinghuoApiSecret" class="input-field" placeholder="ZTAzMjMzMmYxNTRhZjA3NGYxYWU1ZTg3">
+                            <input type="text" id="xinghuoApiSecret" class="input-field" placeholder="请输入APISecret">
                         </div>
                         <button class="btn btn-primary" id="btnSaveApiConfig">
                             <i class="fas fa-save"></i> 保存配置
@@ -321,6 +347,121 @@
                             登录后复制新密钥，然后修改 <code>riot_api_client.py</code> 中的 <code>API_KEY</code> 变量即可。
                             你不需要每次都填，只有密钥过期时才需要更新。
                         </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== 游戏助手 ========== -->
+        <section id="game-assist" class="tab-content">
+            <div class="section-grid">
+                <!-- 游戏状态面板 -->
+                <div class="card card-lg" id="gameStatusCard">
+                    <div class="card-header">
+                        <h3><i class="fas fa-gamepad"></i> 游戏助手</h3>
+                        <div class="card-actions">
+                            <label class="toggle-label" id="autoAcceptLabel">
+                                <input type="checkbox" id="toggleAutoAccept">
+                                <span class="toggle-text">自动接受对局</span>
+                            </label>
+                            <label class="toggle-label" id="autoBanLabel">
+                                <input type="checkbox" id="toggleAutoBan">
+                                <span class="toggle-text">自动禁用</span>
+                            </label>
+                            <button class="btn btn-sm btn-primary" id="btnForceAccept" title="立刻接受对局">
+                                <i class="fas fa-check-circle"></i> 接受
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div id="autoBanConfig" class="auto-ban-config">
+                            <div class="auto-ban-config-inner">
+                                <span class="auto-ban-label">自动禁用:</span>
+                                <span id="autoBanTarget" class="auto-ban-target">未设置</span>
+                                <input type="text" id="autoBanSearch" class="auto-ban-input" placeholder="搜索英雄...">
+                                <button class="btn btn-sm" id="btnSetAutoBan" style="padding:3px 8px;font-size:11px">设置</button>
+                            </div>
+                        </div>
+                        <div id="gameStateDisplay" class="game-state-display">
+                            <div class="game-state-placeholder">
+                                <i class="fas fa-plug" style="font-size:48px;color:var(--text-muted)"></i>
+                                <p>请先启动英雄联盟客户端并连接</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 就绪检查卡片 -->
+                <div class="card" id="readyCheckCard" style="display:none">
+                    <div class="card-body" style="text-align:center;padding:24px">
+                        <div style="font-size:48px;color:var(--accent);animation:pulse 1.5s infinite">🔔</div>
+                        <div style="font-size:20px;font-weight:700;color:var(--text-primary);margin:12px 0">对局已找到！</div>
+                        <button class="btn btn-lg" style="background:var(--win);color:#fff;font-size:18px;padding:12px 40px" id="btnQuickAccept">
+                            <i class="fas fa-check-circle"></i> 立即接受
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 选人阶段助手 -->
+                <div class="card" id="champSelectCard" style="display:none">
+                    <div class="card-header">
+                        <h3><i class="fas fa-users"></i> 选人阶段</h3>
+                        <div style="display:flex;align-items:center;gap:8px">
+                            <button class="btn btn-sm" style="font-size:10px;padding:3px 8px" onclick="window.open('/static/overlay.html','lol_overlay','width=750,height=420,top=10,left=300')" title="打开游戏叠加层查看双方阵容">
+                                <i class="fas fa-layer-group"></i> 叠加层
+                            </button>
+                            <button class="btn btn-sm" style="font-size:10px;padding:3px 8px" onclick="window.open('/static/cd-timer.html','lol_cdtimer','width=230,height=420,top=100,left=100')" title="打开冷却计时器追踪敌方技能">
+                                <i class="fas fa-clock"></i> CD计时
+                            </button>
+                            <span id="champSelectTimer" class="timer-badge" style="font-size:16px;font-weight:700">--</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div id="champSelectContent"></div>
+                    </div>
+                </div>
+
+                <!-- 推荐禁用 -->
+                <div class="card" id="banSuggestCard" style="display:none">
+                    <div class="card-header">
+                        <h3><i class="fas fa-ban"></i> 推荐禁用 (韩服数据)</h3>
+                    </div>
+                    <div class="card-body">
+                        <div id="banSuggestContent"></div>
+                    </div>
+                </div>
+
+                <!-- 游戏中 -->
+                <div class="card" id="inGameCard" style="display:none">
+                    <div class="card-header">
+                        <h3><i class="fas fa-swords"></i> 游戏中</h3>
+                        <div style="display:flex;gap:8px">
+                            <button class="btn btn-sm" style="font-size:10px;padding:3px 8px" onclick="window.open('/static/overlay.html','lol_overlay','width=750,height=420,top=10,left=300')" title="查看双方阵容">
+                                <i class="fas fa-layer-group"></i> 叠加层
+                            </button>
+                            <button class="btn btn-sm" style="font-size:10px;padding:3px 8px" onclick="window.open('/static/cd-timer.html','lol_cdtimer','width=230,height=420,top=100,left=100')" title="追踪敌方技能CD">
+                                <i class="fas fa-clock"></i> CD计时
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div id="inGameContent">
+                            <div style="text-align:center;color:var(--text-muted)">正在监控游戏状态...</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 对局结算 + 点赞 -->
+                <div class="card" id="eogCard" style="display:none">
+                    <div class="card-header">
+                        <h3><i class="fas fa-trophy"></i> 对局结束</h3>
+                    </div>
+                    <div class="card-body">
+                        <div id="eogContent"></div>
+                        <div id="honorPanel" style="margin-top:16px;display:none">
+                            <div class="section-title"><i class="fas fa-heart"></i> 给队友点赞</div>
+                            <div id="honorContent"></div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -10,17 +10,12 @@ import json
 import time
 import uuid
 import logging
-import requests
+from spark_client import call_spark_api
 
 logger = logging.getLogger(__name__)
 
 MEMORY_DIR = os.path.join(os.path.dirname(__file__), 'chat_memory')
 os.makedirs(MEMORY_DIR, exist_ok=True)
-
-AI_CONFIG_FILE = os.path.join(os.path.dirname(__file__), 'ai_config.json')
-
-SPARK_API_URL = 'https://spark-api-open.xf-yun.com/x2/chat/completions'
-SPARK_MODEL = 'spark-x'
 
 SUMMARY_PROMPT = """请将以下英雄联盟游戏对话记录总结为简洁的要点，必须保留以下关键信息：
 1. 用户提到的英雄名称（如亚索、盲僧等）
@@ -36,40 +31,6 @@ SUMMARY_PROMPT = """请将以下英雄联盟游戏对话记录总结为简洁的
 请输出总结："""
 
 
-def _load_ai_config():
-    try:
-        with open(AI_CONFIG_FILE, 'r', encoding='utf-8') as f:
-            return json.load(f)
-    except Exception:
-        return {}
-
-
-def _call_spark_for_summary(messages):
-    config = _load_ai_config()
-    api_key = config.get('aiApiKey', '')
-    api_secret = config.get('xinghuoApiSecret', '')
-    if not api_key or not api_secret:
-        return None
-    try:
-        headers = {
-            'Authorization': f'Bearer {api_key}:{api_secret}',
-            'Content-Type': 'application/json',
-        }
-        payload = {
-            'model': SPARK_MODEL,
-            'messages': messages,
-            'stream': False,
-        }
-        resp = requests.post(SPARK_API_URL, headers=headers, json=payload, timeout=60)
-        if resp.status_code == 200:
-            data = resp.json()
-            return data.get('choices', [{}])[0].get('message', {}).get('content', '')
-        return None
-    except Exception as e:
-        logger.error(f"总结API调用失败: {e}")
-        return None
-
-
 class ChatMemory:
     def __init__(self, session_id: str, mode: str = 'ai'):
         self.session_id = session_id
@@ -80,6 +41,7 @@ class ChatMemory:
         self.last_champ_name = ''
         self.summary = ''
         self.recent_messages = []
+        self._load()
 
     def _save(self):
         data = {
@@ -149,7 +111,7 @@ class ChatMemory:
             {"role": "user", "content": SUMMARY_PROMPT.format(content=full_content)}
         ]
 
-        summary_result = _call_spark_for_summary(messages)
+        summary_result = call_spark_api(messages, timeout=60)
         if summary_result:
             self.summary = summary_result
             self.recent_messages = self.recent_messages[-3:]
@@ -197,13 +159,19 @@ class ChatMemory:
 
 
 _memory_cache = {}
+MAX_CACHED_SESSIONS = 50
 
 
 def get_memory(session_id: str, mode: str = 'ai') -> ChatMemory:
     key = f'{mode}_{session_id}'
     if key not in _memory_cache:
+        # evict oldest entries if cache is full
+        if len(_memory_cache) >= MAX_CACHED_SESSIONS:
+            oldest_key = next(iter(_memory_cache))
+            oldest = _memory_cache.pop(oldest_key)
+            oldest._save()
+            logger.debug(f"淘汰旧会话缓存: {oldest_key}")
         mem = ChatMemory(session_id, mode)
-        mem._load()
         _memory_cache[key] = mem
     return _memory_cache[key]
 

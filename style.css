@@ -164,6 +164,13 @@ body {
 .status-dot.online { background: var(--win); box-shadow: 0 0 8px rgba(92,184,92,0.5); }
 .status-dot.offline { background: #555; }
 
+.sidebar-version {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 6px;
+    text-align: center;
+}
+
 /* ==================== Main Content ==================== */
 .main-content {
     margin-left: var(--sidebar-width);
@@ -1903,8 +1910,956 @@ body {
     .chat-history {
         height: 50vh;
     }
-    
+
     .chat-message {
         max-width: 90%;
     }
+}
+
+/* ==================== Card Actions & Buttons ==================== */
+.card-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-sm {
+    padding: 6px 14px;
+    font-size: 12px;
+}
+
+/* ==================== Toggle Switch ==================== */
+.toggle-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    user-select: none;
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.toggle-label input[type="checkbox"] {
+    appearance: none;
+    width: 40px;
+    height: 22px;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    position: relative;
+    cursor: pointer;
+    transition: var(--transition);
+    flex-shrink: 0;
+}
+
+.toggle-label input[type="checkbox"]::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--text-muted);
+    transition: var(--transition);
+}
+
+.toggle-label input[type="checkbox"]:checked {
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
+.toggle-label input[type="checkbox"]:checked::after {
+    left: 20px;
+    background: #fff;
+    box-shadow: 0 0 4px var(--accent-glow);
+}
+
+.toggle-text {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* ==================== Game State Display ==================== */
+.game-state-display {
+    min-height: 200px;
+}
+
+.game-state-placeholder {
+    text-align: center;
+    padding: 48px 20px;
+    color: var(--text-muted);
+}
+
+.game-state-placeholder p {
+    margin-top: 12px;
+    font-size: 14px;
+}
+
+.game-state-header {
+    text-align: center;
+    padding: 24px 0;
+}
+
+.game-phase-icon {
+    font-size: 56px;
+    margin-bottom: 12px;
+    display: block;
+}
+
+.game-phase-icon.lobby { color: var(--info); }
+.game-phase-icon.matchmaking { color: var(--accent); animation: pulse 1.5s ease-in-out infinite; }
+.game-phase-icon.readycheck { color: #f0a040; animation: pulse 0.8s ease-in-out infinite; }
+.game-phase-icon.champselect { color: var(--win); }
+.game-phase-icon.inprogress { color: var(--loss); }
+.game-phase-icon.endofgame { color: var(--text-muted); }
+
+.game-phase-name {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.game-phase-detail {
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+/* Ready Check Alert */
+.ready-check-alert {
+    text-align: center;
+    padding: 16px;
+    background: rgba(240, 160, 64, 0.12);
+    border: 1px solid rgba(240, 160, 64, 0.3);
+    border-radius: var(--radius-sm);
+    margin: 0 20px 12px;
+}
+
+.ready-check-alert p {
+    color: #f0a040;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+/* Timer bar in champ select */
+.timer-section {
+    padding: 12px 20px;
+    text-align: center;
+}
+
+.timer-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 8px;
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.timer-value {
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.timer-value.urgent {
+    color: var(--loss);
+    animation: pulse 0.6s ease-in-out infinite;
+}
+
+.timer-bar {
+    background: var(--bg-input);
+    border-radius: 6px;
+    height: 6px;
+    overflow: hidden;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.timer-bar-fill {
+    height: 100%;
+    background: var(--win);
+    border-radius: 6px;
+    transition: width 1s linear;
+}
+
+.timer-bar-fill.urgent {
+    background: var(--loss);
+}
+
+.timer-stats {
+    margin-top: 10px;
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.timer-stat-label {
+    margin-right: 4px;
+}
+
+.timer-stat-value {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* ==================== In-Game Banner ==================== */
+.in-game-banner {
+    text-align: center;
+    padding: 16px;
+    color: var(--loss);
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.in-game-banner i {
+    margin-right: 8px;
+}
+
+/* ==================== EOG Stats ==================== */
+.eog-result {
+    text-align: center;
+    padding: 20px;
+}
+
+.eog-emoji {
+    font-size: 52px;
+    margin-bottom: 8px;
+}
+
+.eog-outcome {
+    font-size: 26px;
+    font-weight: 700;
+    margin: 8px 0;
+}
+
+.eog-outcome.win { color: var(--win); }
+.eog-outcome.loss { color: var(--loss); }
+
+.eog-kda {
+    font-size: 20px;
+    margin-top: 4px;
+    letter-spacing: 2px;
+}
+
+.eog-kda .k { color: var(--win); font-weight: 700; }
+.eog-kda .d { color: var(--loss); font-weight: 700; }
+.eog-kda .a { color: var(--info); font-weight: 700; }
+
+.eog-kda-ratio {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+/* ==================== Timer Badge ==================== */
+.timer-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 700;
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+}
+
+/* ==================== Champ Select Content ==================== */
+.champ-select-section {
+    margin-bottom: 14px;
+}
+
+.champ-select-section strong {
+    display: block;
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+.ban-list {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.team-roster {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.player-slot {
+    text-align: center;
+    width: 70px;
+    flex-shrink: 0;
+}
+
+.player-slot-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    object-fit: cover;
+    background: var(--bg-secondary);
+    border: 2px solid var(--border);
+    margin-bottom: 4px;
+    transition: var(--transition);
+}
+
+.player-slot-icon:hover {
+    border-color: var(--accent);
+    transform: scale(1.08);
+}
+
+.player-slot-empty {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    background: var(--bg-input);
+    border: 2px dashed var(--border);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 16px;
+}
+
+.player-slot-name {
+    font-size: 10px;
+    color: var(--text-primary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 1.3;
+}
+
+.player-slot-name.enemy {
+    color: var(--loss);
+}
+
+.player-slot-position {
+    font-size: 9px;
+    color: var(--text-muted);
+}
+
+/* ==================== Responsive Game Assist ==================== */
+@media (max-width: 900px) {
+    .card-actions {
+        flex-wrap: wrap;
+    }
+
+    .game-phase-icon {
+        font-size: 40px;
+    }
+
+    .game-phase-name {
+        font-size: 20px;
+    }
+
+    .eog-emoji {
+        font-size: 40px;
+    }
+
+    .eog-outcome {
+        font-size: 20px;
+    }
+
+    .eog-kda {
+        font-size: 16px;
+    }
+
+    .player-slot {
+        width: 56px;
+    }
+
+    .player-slot-icon,
+    .player-slot-empty {
+        width: 40px;
+        height: 40px;
+    }
+
+    .champ-pick-grid {
+        grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+        gap: 4px;
+    }
+
+    .pick-champ-item {
+        width: 60px;
+        padding: 4px;
+    }
+
+    .pick-champ-item img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .pick-champ-item .name {
+        font-size: 9px;
+    }
+
+    .my-team-pick, .their-team-pick {
+        gap: 6px;
+    }
+
+    .pick-player-slot {
+        width: 52px;
+    }
+
+    .pick-player-slot img {
+        width: 36px;
+        height: 36px;
+    }
+
+    .ban-slot {
+        width: 28px;
+        height: 28px;
+    }
+
+    .ban-slot img {
+        width: 22px;
+        height: 22px;
+    }
+
+    .pick-actions {
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .pick-actions .btn {
+        font-size: 10px;
+        padding: 3px 6px;
+    }
+}
+
+/* ==================== 选人交互 ==================== */
+.champ-pick-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.champ-pick-search {
+    position: relative;
+}
+
+.champ-pick-search input {
+    width: 100%;
+    padding: 10px 14px;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-size: 13px;
+}
+
+.champ-pick-search input:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.search-results-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: 240px;
+    overflow-y: auto;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-top: none;
+    border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+    z-index: 10;
+    display: none;
+}
+
+.search-results-dropdown.show {
+    display: block;
+}
+
+.search-result-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    cursor: pointer;
+    transition: background var(--transition);
+}
+
+.search-result-item:hover {
+    background: var(--bg-card-hover);
+}
+
+.search-result-item img {
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+}
+
+.search-result-item .name {
+    font-size: 13px;
+    color: var(--text-primary);
+}
+
+.pick-teams {
+    display: flex;
+    gap: 24px;
+}
+
+.pick-team {
+    flex: 1;
+}
+
+.pick-team h4 {
+    font-size: 13px;
+    margin-bottom: 8px;
+    color: var(--text-secondary);
+}
+
+.my-team-pick, .their-team-pick {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.pick-player-slot {
+    text-align: center;
+    width: 64px;
+    padding: 4px;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-sm);
+}
+
+.pick-player-slot img {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+}
+
+.pick-player-slot .slot-name {
+    font-size: 10px;
+    color: var(--text-primary);
+    margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pick-player-slot .slot-pos {
+    font-size: 9px;
+    color: var(--text-muted);
+}
+
+.pick-bans-row {
+    display: flex;
+    gap: 24px;
+}
+.ban-group {
+    flex: 1;
+}
+.ban-group-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    display: block;
+    margin-bottom: 4px;
+}
+.ban-slots {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 0;
+}
+
+.ban-slot {
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+    background: var(--bg-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+    transition: all var(--transition);
+}
+
+.ban-slot img {
+    width: 26px;
+    height: 26px;
+    border-radius: 3px;
+    opacity: 0.6;
+}
+.ban-slot.filled { border-color: var(--loss); }
+.ban-slot.empty { border-style: dashed; }
+
+.pick-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+    align-items: center;
+}
+
+.pick-actions .btn {
+    font-size: 12px;
+    padding: 6px 14px;
+}
+
+/* ==================== 免费英雄 ==================== */
+.free-champ-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    padding: 4px 0;
+}
+
+.free-champ-item {
+    text-align: center;
+    width: 64px;
+}
+
+.free-champ-item img {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+}
+
+.free-champ-item span {
+    display: block;
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ==================== 推荐英雄标签 ==================== */
+.reco-badge {
+    display: inline-block;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 4px;
+}
+
+.reco-badge.s-tier { background: rgba(255,100,100,0.2); color: #ff6464; }
+.reco-badge.a-tier { background: rgba(200,155,60,0.2); color: var(--accent); }
+.reco-badge.b-tier { background: rgba(100,160,255,0.2); color: var(--info); }
+
+/* ==================== 数据新鲜度 ==================== */
+.data-freshness {
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    display: inline-block;
+}
+.data-freshness.fresh  { background: rgba(92,184,92,0.12); color: var(--win); }
+.data-freshness.warn   { background: rgba(200,155,60,0.12); color: var(--accent); }
+.data-freshness.stale  { background: rgba(217,83,79,0.12); color: var(--loss); }
+
+/* ==================== API密钥过期提示 ==================== */
+.api-key-expiry {
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    margin-top: 8px;
+}
+
+.api-key-expiry.warning {
+    background: rgba(200,155,60,0.1);
+    color: var(--accent);
+    border: 1px solid rgba(200,155,60,0.3);
+}
+
+.api-key-expiry.expired {
+    background: rgba(217,83,79,0.1);
+    color: var(--loss);
+    border: 1px solid rgba(217,83,79,0.3);
+}
+
+.api-key-expiry.valid {
+    background: rgba(92,184,92,0.1);
+    color: var(--win);
+    border: 1px solid rgba(92,184,92,0.3);
+}
+
+/* ==================== EOG 统计 ==================== */
+.eog-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 8px;
+}
+
+.eog-stat-item {
+    text-align: center;
+    padding: 12px 8px;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-sm);
+}
+
+.eog-stat-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.eog-stat-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+/* ==================== 英雄推荐 ==================== */
+.champ-reco-section {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+}
+
+.pick-champ-item {
+    cursor: pointer;
+    transition: all var(--transition);
+}
+
+.pick-champ-item:hover {
+    background: var(--bg-card-hover);
+    transform: translateY(-2px);
+}
+
+/* ==================== 英雄缩略图状态 ==================== */
+.champ-thumb {
+    position: relative;
+    width: 48px; height: 48px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 2px solid var(--border);
+    transition: all var(--transition);
+    flex-shrink: 0;
+    background: var(--bg-input);
+}
+.champ-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.champ-thumb.is-selected  { border-color: var(--win); box-shadow: 0 0 8px rgba(92,184,92,0.35); }
+.champ-thumb.is-active    { border-color: var(--accent); box-shadow: 0 0 12px var(--accent-glow); animation: pulse 1.2s ease-in-out infinite; }
+.champ-thumb.is-teammate  { border-color: var(--info); }
+.champ-thumb.is-enemy     { border-color: var(--loss); }
+.champ-thumb.is-empty     { background: var(--bg-input); border-style: dashed; border-color: var(--border); opacity: 0.5; }
+.champ-thumb.is-reveal    { animation: enemyReveal 0.45s ease-out; }
+
+@keyframes enemyReveal {
+    from { transform: rotateY(90deg) scale(0.5); opacity: 0; }
+    to   { transform: rotateY(0deg) scale(1); opacity: 1; }
+}
+
+/* ==================== 分路对阵布局 ==================== */
+.pick-lane-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin: 10px 0;
+}
+.pick-lane-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-sm);
+    border-left: 3px solid var(--border);
+    transition: all var(--transition);
+    min-height: 52px;
+}
+.pick-lane-row.lane-top    { border-left-color: #c0392b; }
+.pick-lane-row.lane-jungle { border-left-color: #27ae60; }
+.pick-lane-row.lane-mid    { border-left-color: #2980b9; }
+.pick-lane-row.lane-bot    { border-left-color: #e67e22; }
+.pick-lane-row.lane-sup    { border-left-color: #8e44ad; }
+.pick-lane-row.is-my-lane  { background: rgba(200,155,60,0.06); border-left-color: var(--accent); border-left-width: 4px; }
+
+.lane-label {
+    width: 48px; flex-shrink: 0;
+    font-size: 11px; font-weight: 700;
+    text-align: center;
+    white-space: nowrap;
+}
+.lane-label.lane-top    { color: #c0392b; }
+.lane-label.lane-jungle { color: #27ae60; }
+.lane-label.lane-mid    { color: #2980b9; }
+.lane-label.lane-bot    { color: #e67e22; }
+.lane-label.lane-sup    { color: #8e44ad; }
+
+.lane-slot {
+    flex: 1; display: flex;
+    align-items: center; gap: 6px;
+    min-width: 0;
+}
+.lane-slot .summoner-name {
+    font-size: 12px;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.lane-slot .champ-name-text {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.lane-vs {
+    flex-shrink: 0;
+    width: 24px;
+    text-align: center;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text-muted);
+    opacity: 0.5;
+}
+
+/* ==================== 轮到你了 ==================== */
+.your-turn-banner {
+    background: rgba(200,155,60,0.1);
+    border: 1px solid var(--accent);
+    border-radius: var(--radius-sm);
+    padding: 8px 14px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 10px;
+    animation: fadeIn 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+.your-turn-banner .action-type {
+    background: var(--accent);
+    color: #0a0e1a;
+    padding: 2px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+/* ==================== 禁用推荐网格 ==================== */
+.ban-suggest-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+}
+.ban-suggest-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all var(--transition);
+    border-left: 3px solid transparent;
+}
+.ban-suggest-item:hover { background: var(--bg-card-hover); transform: translateY(-1px); }
+.ban-suggest-item.tier-1 { border-left-color: #ff6464; }
+.ban-suggest-item.tier-2 { border-left-color: var(--accent); }
+.ban-suggest-item.tier-3 { border-left-color: var(--info); }
+.ban-suggest-rank {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: var(--bg-input);
+    font-size: 10px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    color: var(--text-muted);
+}
+.ban-suggest-info { flex: 1; min-width: 0; }
+.ban-rate-bar {
+    height: 3px; border-radius: 2px;
+    background: var(--bg-input);
+    overflow: hidden;
+    margin-top: 2px;
+}
+.ban-rate-bar-fill {
+    height: 100%;
+    background: var(--loss);
+    border-radius: 2px;
+    transition: width 0.5s ease;
+}
+.tier-badge {
+    display: inline-block;
+    font-size: 9px; font-weight: 700;
+    padding: 1px 5px;
+    border-radius: 3px;
+}
+.tier-badge.tier-1 { background: rgba(255,100,100,0.2); color: #ff6464; }
+.tier-badge.tier-2 { background: rgba(200,155,60,0.2); color: var(--accent); }
+.tier-badge.tier-3 { background: rgba(74,158,255,0.2); color: var(--info); }
+
+/* ==================== 自动禁用配置 ==================== */
+.auto-ban-config {
+    display: none;
+    margin-bottom: 12px;
+    padding: 8px 12px;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-sm);
+}
+.auto-ban-config.auto-ban-config-visible { display: block; }
+.auto-ban-config-inner {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.auto-ban-label { font-size: 12px; color: var(--text-muted); }
+.auto-ban-target { color: var(--loss); font-weight: 600; }
+.auto-ban-input {
+    width: 140px;
+    padding: 4px 8px;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text-primary);
+    font-size: 12px;
+}
+
+/* ==================== 骨架屏 ==================== */
+.champ-select-skeleton {
+    padding: 16px 0;
+}
+.skeleton-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+    align-items: center;
+}
+.skeleton-block {
+    border-radius: var(--radius-sm);
+    background: linear-gradient(90deg, var(--bg-secondary) 25%, var(--bg-card-hover) 50%, var(--bg-secondary) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
+.skeleton-block.sm { width: 48px; height: 48px; }
+.skeleton-block.md { width: 80px; height: 14px; }
+.skeleton-block.lg { flex: 1; height: 48px; }
+
+/* ==================== 英雄选取网格 (桌面) ==================== */
+.champ-pick-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+    gap: 6px;
+}
+
+/* ==================== 响应式: 游戏助手 ==================== */
+@media (max-width: 900px) {
+    .pick-lane-row { gap: 4px; padding: 5px 6px; }
+    .lane-label { width: 36px; font-size: 9px; }
+    .champ-thumb { width: 36px; height: 36px; border-radius: 6px; }
+    .lane-slot .summoner-name { font-size: 10px; }
+    .lane-slot .champ-name-text { font-size: 9px; }
+    .lane-vs { width: 16px; font-size: 8px; }
+
+    .ban-suggest-grid { grid-template-columns: repeat(2, 1fr); gap: 5px; }
+    .ban-suggest-item { padding: 6px; gap: 5px; }
+    .ban-suggest-item .champ-thumb { width: 30px; height: 30px; }
+
+    .your-turn-banner { font-size: 11px; padding: 6px 10px; }
+    .auto-ban-input { width: 100px; }
 }

@@ -2,18 +2,12 @@
 通用聊天Skill - 兜底处理，当其他Skill都不匹配时使用
 直接调用讯飞星火HTTP API生成回复
 """
-import json
 import os
 import logging
-import requests
+from spark_client import call_spark_api
 from .base_skill import BaseSkill
 
 logger = logging.getLogger(__name__)
-
-AI_CONFIG_FILE = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'ai_config.json')
-
-SPARK_API_URL = 'https://spark-api-open.xf-yun.com/x2/chat/completions'
-SPARK_MODEL = 'spark-x'
 
 SYSTEM_PROMPT = """你是「LOL数据助手」，一位专业的英雄联盟游戏顾问，拥有丰富的游戏知识和实战经验。
 
@@ -52,42 +46,6 @@ class GeneralSkill(BaseSkill):
     def should_trigger(self, message: str) -> bool:
         return True
 
-    def _load_ai_config(self):
-        try:
-            with open(AI_CONFIG_FILE, 'r', encoding='utf-8') as f:
-                return json.load(f)
-        except Exception:
-            return {}
-
-    def _call_spark_api(self, messages):
-        config = self._load_ai_config()
-        api_key = config.get('aiApiKey', '')
-        api_secret = config.get('xinghuoApiSecret', '')
-        if not api_key or not api_secret:
-            logger.error("星火API配置缺失")
-            return None
-        try:
-            headers = {
-                'Authorization': f'Bearer {api_key}:{api_secret}',
-                'Content-Type': 'application/json',
-            }
-            payload = {
-                'model': SPARK_MODEL,
-                'messages': messages,
-                'stream': False,
-            }
-            resp = requests.post(SPARK_API_URL, headers=headers, json=payload, timeout=60)
-            if resp.status_code == 200:
-                data = resp.json()
-                content = data.get('choices', [{}])[0].get('message', {}).get('content', '')
-                return content if content else None
-            else:
-                logger.error(f"星火API错误: {resp.status_code} {resp.text[:200]}")
-                return None
-        except Exception as e:
-            logger.error(f"星火API调用失败: {e}")
-            return None
-
     def execute(self, message: str, context: dict = None) -> dict:
         rag_context = ""
         memory_context = ""
@@ -111,7 +69,7 @@ class GeneralSkill(BaseSkill):
                 {"role": "user", "content": user_content}
             ]
 
-            response = self._call_spark_api(messages)
+            response = call_spark_api(messages, timeout=60)
             if response:
                 return {
                     'skill': self.name,

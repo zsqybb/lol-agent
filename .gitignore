@@ -1,0 +1,22 @@
+# 敏感配置文件（含API密钥）
+ai_config.json
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+
+# IDE
+.idea/
+
+# 对话记忆临时文件
+chat_memory/*.json
+
+# 生成的文档
+*.docx
+~$*.docx
+
+# 系统文件
+Thumbs.db
+Desktop.ini

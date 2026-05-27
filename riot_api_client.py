@@ -10,19 +10,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 logger = logging.getLogger(__name__)
 
-# API_KEY 存储为可变变量，支持动态更新
-_API_KEY = "RGAPI-49120fd3-c7a0-4556-b196-b674b7b699ae"
-
-def get_api_key():
-    """获取当前API密钥"""
-    global _API_KEY
-    return _API_KEY
-
-def set_api_key(new_key):
-    """动态更新API密钥"""
-    global _API_KEY
-    _API_KEY = new_key
-    logger.info(f"API密钥已更新: {new_key[:10]}...")
+from config import get_riot_api_key as get_api_key, set_riot_api_key as set_api_key, RIOT_API_MIN_INTERVAL
 
 # 区域端点配置
 REGIONAL = {
@@ -44,7 +32,6 @@ DEFAULT_PLATFORM = "kr"
 
 # 请求限速
 _last_request_time = 0
-MIN_INTERVAL = 1.2  # 秒
 
 
 def _rate_limit():
@@ -52,8 +39,8 @@ def _rate_limit():
     global _last_request_time
     now = time.time()
     elapsed = now - _last_request_time
-    if elapsed < MIN_INTERVAL:
-        time.sleep(MIN_INTERVAL - elapsed)
+    if elapsed < RIOT_API_MIN_INTERVAL:
+        time.sleep(RIOT_API_MIN_INTERVAL - elapsed)
     _last_request_time = time.time()
 
 

@@ -124,28 +124,31 @@ class PlayerSkill(BaseSkill):
         data = result.get('data', {})
         account = data.get('account', {})
         summoner = data.get('summoner', {})
-        leagues = data.get('leagues', [])
-
+        rank_data = data.get('rank', {})
         parts = []
         name = account.get('gameName', '') or summoner.get('name', '')
         parts.append(f"👤 **玩家：{name}**\n")
 
-        if leagues:
-            for league in leagues:
-                tier = league.get('tier', '')
-                rank = league.get('rank', '')
-                lp = league.get('leaguePoints', 0)
-                wins = league.get('wins', 0)
-                losses = league.get('losses', 0)
-                total = wins + losses
-                wr = (wins / total * 100) if total > 0 else 0
-                queue = league.get('queueType', '')
-                queue_cn = '单双排' if 'SOLO' in queue else '灵活排位' if 'FLEX' in queue else queue
-                tier_emoji = {'IRON': '🔩', 'BRONZE': '🥉', 'SILVER': '🥈', 'GOLD': '🥇', 'PLATINUM': '💎', 'EMERALD': '💚', 'DIAMOND': '💠', 'MASTER': '🔴', 'GRANDMASTER': '🔥', 'CHALLENGER': '👑'}
-                t_emoji = tier_emoji.get(tier.upper(), '🎮')
-                wr_emoji = '🔥' if wr > 55 else '👍' if wr > 50 else '⚠️'
-                parts.append(f"{t_emoji} **{queue_cn}**：{tier} {rank} ({lp}LP)")
-                parts.append(f"  {wr_emoji} 战绩：{wins}胜 {losses}负 (胜率{wr:.1f}%)")
+        if rank_data:
+            rank_order = [
+                ('solo', '单双排'),
+                ('flex', '灵活排位'),
+            ]
+            tier_emoji = {'IRON': '🔩', 'BRONZE': '🥉', 'SILVER': '🥈', 'GOLD': '🥇', 'PLATINUM': '💎', 'EMERALD': '💚', 'DIAMOND': '💠', 'MASTER': '🔴', 'GRANDMASTER': '🔥', 'CHALLENGER': '👑'}
+            for key, name_cn in rank_order:
+                entry = rank_data.get(key, {})
+                if entry and entry.get('tier'):
+                    tier = entry.get('tier', '')
+                    division = entry.get('division', '')
+                    lp = entry.get('leaguePoints', 0)
+                    wins = entry.get('wins', 0)
+                    losses = entry.get('losses', 0)
+                    total = wins + losses
+                    wr = (wins / total * 100) if total > 0 else 0
+                    t_emoji = tier_emoji.get(tier.upper(), '🎮')
+                    wr_emoji = '🔥' if wr > 55 else '👍' if wr > 50 else '⚠️'
+                    parts.append(f"{t_emoji} **{name_cn}**：{tier} {division} ({lp}LP)")
+                    parts.append(f"  {wr_emoji} 战绩：{wins}胜 {losses}负 (胜率{wr:.1f}%)")
         else:
             parts.append("📋 暂无排位数据")
 

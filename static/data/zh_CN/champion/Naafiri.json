@@ -1,0 +1,50 @@
+{
+  "version": "16.10.1",
+  "id": "Naafiri",
+  "key": "950",
+  "name": "百裂冥犬",
+  "title": "纳亚菲利",
+  "blurb": "一望无际的恕瑞玛大漠上，回荡着嗥吠啸鸣的合唱，那是沙丘猎狗的呼号。这些凶狠的食肉动物会成群结队，在这片贫瘠的土地上争夺狩猎的资格。在众多狗群之中，有一群地位最高，因为它们不仅拥有犬科动物的血性，更有来自暗裔的远古力量。",
+  "info": {
+    "attack": 9,
+    "defense": 5,
+    "magic": 0,
+    "difficulty": 2
+  },
+  "image": {
+    "full": "Naafiri.png",
+    "sprite": "champion2.png",
+    "group": "champion",
+    "x": 336,
+    "y": 96,
+    "w": 48,
+    "h": 48
+  },
+  "tags": [
+    "Assassin",
+    "Fighter"
+  ],
+  "partype": "法力",
+  "stats": {
+    "hp": 610,
+    "hpperlevel": 105,
+    "mp": 400,
+    "mpperlevel": 55,
+    "movespeed": 340,
+    "armor": 28,
+    "armorperlevel": 4.2,
+    "spellblock": 32,
+    "spellblockperlevel": 2.05,
+    "attackrange": 125,
+    "hpregen": 6.25,
+    "hpregenperlevel": 0.6,
+    "mpregen": 7.5,
+    "mpregenperlevel": 1,
+    "crit": 0,
+    "critperlevel": 0,
+    "attackdamage": 55,
+    "attackdamageperlevel": 0,
+    "attackspeedperlevel": 2.1,
+    "attackspeed": 0.663
+  }
+}
